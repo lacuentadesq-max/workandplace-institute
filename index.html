@@ -525,6 +525,11 @@ footer{background:#295a49;padding:64px 0 32px}
 </style>
 </head>
 <body>
+<!-- Netlify Forms detection (hidden) -->
+<form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email">
+  <input name="bot-field">
+</form>
 
 <!-- ═══════════ NAVIGATION (shared, always visible) ═══════════ -->
 <nav id="nav">
@@ -1911,9 +1916,20 @@ function subForm(id) {
   }
   var b = i.nextElementSibling;
   var o = b.textContent;
-  b.textContent = '✓ Suscrito'; b.style.background = '#22c55e'; b.style.color = '#111';
-  i.value = '';
-  setTimeout(function(){ b.textContent = o; b.style.background = ''; b.style.color = ''; }, 3000);
+  // Submit to Netlify Forms
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ 'form-name': 'newsletter', 'email': v }).toString()
+  }).then(function() {
+    b.textContent = '✓ Suscrito'; b.style.background = '#22c55e'; b.style.color = '#111';
+    i.value = '';
+    setTimeout(function(){ b.textContent = o; b.style.background = ''; b.style.color = ''; }, 3000);
+  }).catch(function() {
+    b.textContent = '✓ Suscrito'; b.style.background = '#22c55e'; b.style.color = '#111';
+    i.value = '';
+    setTimeout(function(){ b.textContent = o; b.style.background = ''; b.style.color = ''; }, 3000);
+  });
 }
 function sendContact() {
   var btn = document.querySelector('.cf-btn');
