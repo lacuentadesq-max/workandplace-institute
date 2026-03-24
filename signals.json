@@ -1,0 +1,82 @@
+{
+  "signals": [
+    {
+      "id": "2026-03-24",
+      "cat": "Regulación ESG",
+      "title": "Certificación energética obligatoria: el activo que no renueva ya tiene precio",
+      "meta": "24 Mar 2026 · 5 min lectura",
+      "meta_en": "24 Mar 2026 · 5 min read",
+      "cat_en": "ESG Regulation",
+      "title_en": "Mandatory energy certification: the cost of not renovating is already priced in",
+      "body": "<p>La Directiva Europea de Eficiencia Energética en Edificios (EPBD revisada, 2024/1275) ya no es un mandato de futuro — es una presión activa sobre las decisiones de portfolio corporativo hoy. A partir de 2030, ningún edificio comercial podrá quedarse por debajo de la clase energética E. Para 2033, el mínimo será la clase D.</p><p>Los datos de mercado son contundentes: JLL y CBRE reportan que los activos sin certificación EPC A o B en los mercados más maduros (Reino Unido, Países Bajos, Alemania) ya cierran con un descuento del 8–15% respecto a activos equivalentes certificados. El 'brown discount' ha dejado de ser una hipótesis académica.</p><p><strong>¿Qué implica para el workplace corporativo?</strong> Tres vectores de presión simultáneos: (1) los arrendatarios con compromisos ESG exigen contratos green lease o negocian rentas a la baja; (2) los inversores institucionales aplican haircuts en valoración a activos con rating EPC D o inferior; (3) las ampliaciones de ZBE en Madrid y Barcelona añaden restricciones operativas sobre activos en zonas afectadas.</p><p>La lectura estratégica es clara: el cumplimiento regulatorio ya no es el mínimo — es el umbral de entrada al mercado. Las empresas que no tienen una hoja de ruta de certificación energética de su portfolio no están gestionando un riesgo regulatorio futuro. Están acumulando un pasivo financiero presente.</p>",
+      "body_en": "<p>The revised EU Energy Performance of Buildings Directive (EPBD 2024/1275) is no longer a future mandate — it is active pressure on corporate portfolio decisions today. From 2030, no commercial building may fall below energy class E. By 2033, the minimum will be class D.</p><p>Market data is unambiguous: JLL and CBRE report that assets without EPC A or B certification in mature markets (UK, Netherlands, Germany) are already closing at an 8–15% discount versus equivalent certified assets. The 'brown discount' has moved from academic hypothesis to market reality.</p><p><strong>What does this mean for corporate workplace?</strong> Three simultaneous pressure vectors: (1) tenants with ESG commitments demand green lease contracts or negotiate rents down; (2) institutional investors apply haircuts on assets rated EPC D or below; (3) ZBE expansions in Madrid and Barcelona add operational restrictions on affected assets.</p><p>The strategic read is clear: regulatory compliance is no longer the minimum — it is the market entry threshold. Companies without an energy certification roadmap for their portfolio are not managing a future regulatory risk. They are accumulating a present financial liability.</p>",
+      "tags": ["Regulación", "EPBD", "Valor del activo", "ESG"],
+      "tags_en": ["Regulation", "EPBD", "Asset Value", "ESG"]
+    },
+    {
+      "id": "2026-03-23",
+      "cat": "Tecnología & Datos",
+      "title": "Sensores, IA y datos de ocupación: cómo la medición transforma la gestión del espacio",
+      "meta": "23 Mar 2026 · 4 min lectura",
+      "meta_en": "23 Mar 2026 · 4 min read",
+      "cat_en": "Technology & Data",
+      "title_en": "Sensors, AI and occupancy data: how measurement is transforming space management",
+      "body": "<p>Los sistemas de ocupación basados en inteligencia artificial ya no son exclusivos de los grandes portfolios corporativos. En 2025, la adopción se ha acelerado también en organizaciones medianas, impulsada por la caída de costes de los sensores y la proliferación de plataformas SaaS de gestión de espacio.</p><p>La pregunta ya no es si medir, sino qué hacer con los datos. El 67% de las empresas del Fortune 500 ya miden la ocupación real con sensores — pero solo el 23% actúan sobre esos datos para tomar decisiones de portfolio, según el último informe de JLL. El gap entre quien mide y quien optimiza es donde está la ventaja competitiva real en los próximos dos años.</p><p><strong>La señal más relevante esta semana:</strong> Microsoft ha integrado sensores de calidad del aire en su estándar de certificación de edificios inteligentes, elevando el listón para el sector. El bienestar ambiental del espacio (CO₂, temperatura, humedad, ruido) se convierte en KPI medible y reportable — con implicaciones directas para el CSRD.</p>",
+      "body_en": "<p>AI-based occupancy systems are no longer exclusive to large corporate portfolios. In 2025, adoption has also accelerated among mid-sized organisations, driven by falling sensor costs and the proliferation of SaaS space management platforms.</p><p>The question is no longer whether to measure, but what to do with the data. 67% of Fortune 500 companies already measure real occupancy with sensors — but only 23% act on that data to make portfolio decisions, according to the latest JLL report. The gap between those who measure and those who optimise is where real competitive advantage lies over the next two years.</p><p><strong>The most relevant signal this week:</strong> Microsoft has integrated air quality sensors into its smart building certification standard, raising the bar for the sector. Environmental workplace wellbeing (CO₂, temperature, humidity, noise) becomes a measurable and reportable KPI — with direct implications for CSRD reporting.</p>",
+      "tags": ["Tecnología", "Datos", "Ocupación", "IA"],
+      "tags_en": ["Technology", "Data", "Occupancy", "AI"]
+    },
+    {
+      "id": "2026-03-22",
+      "cat": "Asset Value",
+      "title": "El descuento verde ya existe: qué activos pierden valor por no adaptarse a los criterios ESG",
+      "meta": "22 Mar 2026 · 5 min lectura",
+      "meta_en": "22 Mar 2026 · 5 min read",
+      "cat_en": "Asset Value",
+      "title_en": "The green premium is real: which assets are losing value by ignoring ESG criteria",
+      "body": "<p>El 'brown discount' ya no es una hipótesis. Datos de JLL, CBRE y Savills para el mercado europeo muestran que los edificios sin certificación energética están registrando mayores tasas de vacancia, rentas por debajo del mercado y menor liquidez en procesos de desinversión.</p><p>Blackstone y Nuveen han reforzado sus criterios ESG de portfolio: ningún activo de oficinas sin plan de descarbonización antes de 2027. Cuando los mayores gestores de activos inmobiliarios del mundo fijan ese criterio, el mercado de transacciones secundarias cambia. Los propietarios de activos no certificados encontrarán cada vez menos compradores institucionales.</p><p>Para los responsables de real estate corporativo: mantener activos con perfil energético deficiente tiene un coste financiero mensurable y creciente. La ventana para actuar antes de que el descuento se amplíe es estrecha.</p>",
+      "body_en": "<p>The 'brown discount' is no longer a hypothesis. Data from JLL, CBRE and Savills for the European market shows that buildings without energy certification are recording higher vacancy rates, below-market rents and lower liquidity in divestment processes.</p><p>Blackstone and Nuveen have tightened their portfolio ESG criteria: no office asset without a decarbonisation plan before 2027. When the world's largest real estate asset managers set that criterion, the secondary transaction market changes. Owners of uncertified assets will find fewer and fewer institutional buyers.</p><p>For corporate real estate managers: holding assets with poor energy profiles carries a measurable and growing financial cost. The window to act before the discount widens is narrow.</p>",
+      "tags": ["Asset Value", "ESG", "Inversión", "Sostenibilidad"],
+      "tags_en": ["Asset Value", "ESG", "Investment", "Sustainability"]
+    },
+    {
+      "id": "2026-03-21",
+      "cat": "Experiencia del empleado",
+      "title": "Cuando el diseño del espacio determina la atracción de talento: evidencia y lecturas de mercado",
+      "meta": "21 Mar 2026 · 4 min lectura",
+      "meta_en": "21 Mar 2026 · 4 min read",
+      "cat_en": "Employee Experience",
+      "title_en": "When space design determines talent attraction: evidence and market readings",
+      "body": "<p>Datos del Leesman Index 2024 muestran que los empleados que valoran positivamente su espacio de trabajo tienen un 42% más de probabilidad de recomendar la empresa como empleador. En un mercado de talento todavía competitivo, el espacio es argumento de employer branding — no solo de productividad.</p><p>Apple ha anunciado que exigirá 4 días de presencia en oficina a partir de mayo de 2026. El debate sobre el mandato de retorno vuelve al primer plano, pero los datos sugieren que el retorno sostenible no se consigue con mandatos, sino con espacios que merezcan el desplazamiento.</p><p>El espacio ya no se diseña para alojar personas, sino para activar comportamientos concretos: colaboración estructurada, concentración profunda, socialización informal. Quien diseña sin ese criterio está optimizando el metro cuadrado en lugar de optimizar el output.</p>",
+      "body_en": "<p>Leesman Index 2024 data shows that employees who rate their workspace positively are 42% more likely to recommend their employer. In a still-competitive talent market, space is an employer branding argument — not just a productivity one.</p><p>Apple has announced it will require 4 days of office presence from May 2026. The return mandate debate is back in the foreground, but data suggests that sustainable return is not achieved through mandates, but through spaces that are worth the commute.</p><p>Space is no longer designed to house people, but to activate specific behaviours: structured collaboration, deep concentration, informal socialisation. Designing without that criterion optimises square metres instead of optimising output.</p>",
+      "tags": ["Talento", "Experiencia", "Híbrido", "Diseño"],
+      "tags_en": ["Talent", "Experience", "Hybrid", "Design"]
+    },
+    {
+      "id": "2026-03-20",
+      "cat": "Workplace",
+      "title": "Post-pandemia: el modelo híbrido no es el destino, sino el punto de partida",
+      "meta": "20 Mar 2026 · 4 min lectura",
+      "meta_en": "20 Mar 2026 · 4 min read",
+      "cat_en": "Workplace",
+      "title_en": "Post-pandemic: the hybrid model is not the destination, but the starting point",
+      "body": "<p>Cuatro años después del shock de 2020, el trabajo híbrido ha dejado de ser una respuesta de emergencia para convertirse en el marco desde el que se replantea la lógica entera del espacio corporativo. La media europea se estabiliza en 3,2 días de presencia semanal en Q1 2026 — un nivel que parece consolidado.</p><p>La pregunta estratégica no es cuántos días vienen los empleados, sino para qué vienen. Y esa respuesta define qué tipo de espacio tiene sentido, en qué ubicación, con qué tecnología y bajo qué modelo de gestión. Las empresas que siguen midiendo el éxito del híbrido en términos de presencia están haciendo la pregunta equivocada.</p>",
+      "body_en": "<p>Four years after the 2020 shock, hybrid work has moved from emergency response to the framework from which the entire logic of corporate space is being rethought. The European average stabilises at 3.2 days of weekly presence in Q1 2026 — a level that appears consolidated.</p><p>The strategic question is not how many days employees come in, but why they come. And that answer defines what type of space makes sense, in what location, with what technology and under what management model. Companies still measuring hybrid success in terms of presence are asking the wrong question.</p>",
+      "tags": ["Híbrido", "Workplace", "Estrategia", "Tendencias"],
+      "tags_en": ["Hybrid", "Workplace", "Strategy", "Trends"]
+    },
+    {
+      "id": "2026-03-19",
+      "cat": "Sostenibilidad",
+      "title": "El Reglamento CSRD y su impacto en la medición del espacio como activo ESG",
+      "meta": "19 Mar 2026 · 5 min lectura",
+      "meta_en": "19 Mar 2026 · 5 min read",
+      "cat_en": "Sustainability",
+      "title_en": "CSRD and its impact on measuring space as an ESG asset",
+      "body": "<p>La CSRD (Corporate Sustainability Reporting Directive) exige a las empresas europeas reportar sobre sus impactos ambientales con un nivel de detalle sin precedentes. Para los responsables de workplace, esto tiene una implicación directa: los activos físicos entran en el perímetro del reporting ESG.</p><p>La Comisión Europea ha abierto consulta sobre la simplificación de los estándares ESRS. El espacio como activo ESG podría quedar fuera del reporte obligatorio para pymes — pero las grandes corporaciones no tienen esa salida. El espacio, su consumo energético, su huella de carbono y su impacto en el bienestar de las personas son métricas que ya deben aparecer en el reporting.</p><p>Quien no esté midiendo hoy estará improvisando en el momento de la auditoría. Y en CSRD, improvisar tiene coste reputacional y regulatorio.</p>",
+      "body_en": "<p>CSRD (Corporate Sustainability Reporting Directive) requires European companies to report on their environmental impacts with unprecedented detail. For workplace managers, this has a direct implication: physical assets enter the ESG reporting perimeter.</p><p>The European Commission has opened a consultation on simplifying ESRS standards. Space as an ESG asset could be excluded from mandatory reporting for SMEs — but large corporations have no such escape. Space, its energy consumption, its carbon footprint and its impact on people's wellbeing are metrics that must now appear in reporting.</p><p>Those not measuring today will be improvising at audit time. And in CSRD, improvising carries reputational and regulatory cost.</p>",
+      "tags": ["CSRD", "Sostenibilidad", "Reporting", "ESG"],
+      "tags_en": ["CSRD", "Sustainability", "Reporting", "ESG"]
+    }
+  ]
+}
