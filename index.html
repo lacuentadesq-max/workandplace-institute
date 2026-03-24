@@ -1814,7 +1814,7 @@ function renderSignalList() {
   container.innerHTML = arts.map(function(a, i){
     var parts = a.meta.split('·');
     var d = parts[0] ? parts[0].trim() : '';
-    var t = parts[1] ? parts[1].trim() : '';
+    var t = parts[2] ? parts[2].trim() : (parts[1] ? parts[1].trim() : '');
     return '<a class="sig-item" onclick="showArt('+i+');return false;" href="#">'+
       '<div class="sig-item-inner"><div>'+
       '<div class="sig-item-cat">'+a.cat+'</div>'+
