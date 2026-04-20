@@ -306,17 +306,26 @@ footer{background:#295a49;padding:64px 0 32px}
 
 /* ── MOBILE (≤640px) ── */
 @media(max-width:640px){
+  /* global */
+  *{-webkit-text-size-adjust:100%}
+  body{overflow-x:hidden}
+  .container{padding:0 16px}
+
   /* nav */
   .nav-links{display:none}.hamburger{display:flex}
+  .nav-inner{padding:0 16px}
+  .lang-switcher{margin-left:8px}
 
   /* hero */
   .hero{padding:80px 16px 60px;min-height:100svh}
   .hero-h{font-size:clamp(2rem,9vw,3rem);line-height:1.1}
+  .hero-sub{font-size:.9rem;padding:0 8px}
   .hero-card{padding:20px 16px 16px;border-radius:12px;max-width:100%}
   .hero-card-msg{white-space:normal;font-size:.68rem}
   .hero-card-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px;max-width:100%}
   .hero-card-input{padding:8px 4px;font-size:.85rem}
   .hero-card-btn{border-radius:8px;padding:12px;width:100%;text-align:center}
+  .hero-bubble{font-size:.75rem;padding:8px 14px 8px 10px}
 
   /* ticker */
   .ticker{height:28px}
@@ -326,6 +335,7 @@ footer{background:#295a49;padding:64px 0 32px}
   .wi-image-col{display:none}
   .cobertura-wrap{margin-top:48px;padding-top:48px}
   .intel-grid{grid-template-columns:1fr}
+  .wi-section{padding:60px 0}
 
   /* gateway */
   .gateway-grid{padding:0 16px 48px}
@@ -339,22 +349,31 @@ footer{background:#295a49;padding:64px 0 32px}
   .ah-photo{height:280px}
   .ah-info{padding:20px 20px 10px}
   .ah-footer{padding:10px 20px 18px}
+  .ah-section{padding:60px 0}
 
   /* contact */
   .contact-grid{grid-template-columns:1fr;gap:32px}
   .contact-h1{font-size:clamp(2rem,8vw,3rem)}
+  .cf-field input,.cf-field textarea{font-size:16px}
 
   /* footer */
   .intel-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
   .f-devby{text-align:left}
+  .f-nl-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px}
+  .f-nl-input{padding:8px 4px;font-size:16px}
+  .f-nl-btn{border-radius:8px;padding:12px;width:100%;text-align:center}
+  .footer-legal{font-size:10px}
 
   /* signals page */
   .pg-signals{overflow-x:hidden}
   .sig-h{font-size:clamp(2rem,8vw,3rem)}
   .sig-archive{padding:0 16px}
   .sig-item-inner{grid-template-columns:1fr}.sig-item-meta{display:none}
+  .ss-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px}
+  .ss-form input{font-size:16px}
+  .ss-form button{border-radius:8px;padding:12px;width:100%}
 
   /* signals article */
   #sig-art.container{padding:0 16px}
@@ -376,6 +395,12 @@ footer{background:#295a49;padding:64px 0 32px}
   /* nosotras */
   .nos-hero-2col{grid-template-columns:1fr!important}
   .nos-hero-2col .nos-hero-img{display:none}
+  .nos-tabs{overflow-x:auto;white-space:nowrap}
+  .nos-tab{font-size:.8rem;padding:10px 16px}
+  .nos-acc-header{font-size:.85rem}
+
+  /* legal modal */
+  #legal-modal{padding:24px 20px;max-height:90vh}
 }
 
 /* ── NOSOTRAS PAGE ── */
@@ -1942,14 +1967,20 @@ function subForm(id) {
   var b = i.nextElementSibling;
   var o = b.textContent;
   b.textContent = '✓ Suscrito'; b.style.background = '#22c55e'; b.style.color = '#111';
-  // Enviar a Netlify Forms
-  var body = 'form-name=newsletter&email=' + encodeURIComponent(v);
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: body
-  }).catch(function(){});
   i.value = '';
+  // Enviar a Brevo API
+  fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': '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'
+    },
+    body: JSON.stringify({
+      email: v,
+      listIds: [3],
+      updateEnabled: true
+    })
+  }).catch(function(){});
   setTimeout(function(){ b.textContent = o; b.style.background = ''; b.style.color = ''; }, 3000);
 }
 function sendContact() {
