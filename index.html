@@ -76,7 +76,7 @@ nav.raised{box-shadow:0 1px 32px rgba(41,90,73,.08)}
 .hb-sep{font-size:.6rem;color:var(--ink);opacity:.2}
 .hero-byline{font-size:.72rem;color:var(--muted)}
 .hero-byline button{color:var(--ink);font-weight:500;border:none;background:none;cursor:pointer;border-bottom:1px solid var(--bmd);font-family:var(--f-g);font-size:.72rem;padding:0}
-.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
 .hero-scroll-lbl{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(41,90,73,.28)}
 .hero-scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,rgba(41,90,73,.28),transparent);animation:bob 2.2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.5)}}
@@ -328,9 +328,9 @@ footer{background:#295a49;padding:64px 0 32px}
   /* hide scroll indicator on mobile */
   .hero-scroll{display:none}
   /* cobertura temática - show desc on mobile */
-  .intel-desc{max-height:none!important;opacity:1!important;color:var(--muted)!important}
-  .intel-name{margin-bottom:10px!important}
-  .intel-cell{padding:20px 20px}
+  .intel-desc{max-height:none!important;opacity:1!important;color:var(--muted)!important;display:block!important}
+  .intel-name{margin-bottom:10px!important;color:var(--ink)!important}
+  .intel-cell{padding:20px 20px;background:var(--surf)!important}
 
   /* nav */
   .nav-links{display:none}.hamburger{display:flex}
@@ -338,7 +338,7 @@ footer{background:#295a49;padding:64px 0 32px}
   .lang-switcher{margin-left:8px}
 
   /* hero */
-  .hero{padding:80px 16px 60px;min-height:100svh}
+  .hero{padding:80px 16px 80px;min-height:100svh}
   .hero-h{font-size:clamp(1.8rem,7vw,3rem);line-height:1.1;word-break:break-word}
   .hero-sub{font-size:.9rem;padding:0 8px}
   .hero-card{padding:20px 16px 16px;border-radius:12px;max-width:100%}
@@ -484,7 +484,7 @@ footer{background:#295a49;padding:64px 0 32px}
 
 /* hero unified card */
 .hero-card{background:#fff;border:1px solid rgba(41,90,73,.1);border-radius:16px;padding:28px 32px 22px;max-width:560px;width:100%;margin:0 auto 16px;box-shadow:0 4px 32px rgba(41,90,73,.08);text-align:center;transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
-.hero-card-msg{font-size:.72rem;font-weight:500;letter-spacing:.07em;color:rgba(41,90,73,.5);line-height:1.4;margin-bottom:18px;white-space:normal}
+.hero-card-msg{font-size:.72rem;font-weight:500;letter-spacing:.07em;color:rgba(41,90,73,.5);line-height:1.8;margin-bottom:18px;white-space:normal}
 .hero-card-msg .hero-card-accent{color:#1c3e33!important;font-weight:800!important;font-size:.8rem;letter-spacing:.04em}
 .hero-card-msg strong{opacity:1;color:var(--ink)}
 .hero-card-accent{color:var(--ink);font-weight:700;opacity:1}
