@@ -477,12 +477,12 @@ footer{background:#295a49;padding:64px 0 32px}
 
 
 /* hero unified card */
-.hero-card{background:#fff;border:1px solid rgba(41,90,73,.1);border-radius:16px;padding:28px 32px 22px;max-width:560px;width:100%;margin:0 auto 16px;box-shadow:0 4px 32px rgba(41,90,73,.08);text-align:center;transition:transform .25s ease,box-shadow .25s ease}
-.hero-card-msg{font-size:.72rem;font-weight:500;letter-spacing:.07em;color:rgba(41,90,73,.5);line-height:1.4;margin-bottom:18px;white-space:nowrap}
+.hero-card{background:#fff;border:1px solid rgba(41,90,73,.1);border-radius:16px;padding:28px 32px 22px;max-width:560px;width:100%;margin:0 auto 16px;box-shadow:0 4px 32px rgba(41,90,73,.08);text-align:center;transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
+.hero-card-msg{font-size:.72rem;font-weight:500;letter-spacing:.07em;color:rgba(41,90,73,.5);line-height:1.4;margin-bottom:18px;white-space:normal}
 .hero-card-msg .hero-card-accent{color:#1c3e33!important;font-weight:800!important;font-size:.8rem;letter-spacing:.04em}
 .hero-card-msg strong{opacity:1;color:var(--ink)}
 .hero-card-accent{color:var(--ink);font-weight:700;opacity:1}
-.hero-card-form{display:flex;background:var(--bg);border:1px solid rgba(41,90,73,.15);border-radius:100px;padding:5px 5px 5px 18px;gap:4px;margin-bottom:14px;max-width:400px;margin-left:auto;margin-right:auto}
+.hero-card-form{display:flex;background:var(--bg);border:2px solid var(--ink);border-radius:100px;padding:5px 5px 5px 18px;gap:4px;margin-bottom:14px;max-width:400px;margin-left:auto;margin-right:auto}
 .hero-card-input{flex:1;background:transparent;border:none;outline:none;font-family:var(--f-g);font-size:.86rem;color:var(--ink);min-width:0}
 .hero-card-input::placeholder{color:rgba(41,90,73,.3)}
 .hero-card-btn{flex-shrink:0;background:var(--ink);color:#fff;border:none;border-radius:100px;padding:11px 22px;font-family:var(--f-g);font-size:.78rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
@@ -1983,12 +1983,7 @@ function subForm(id) {
   var o = b.textContent;
   b.textContent = '✓ Suscrito'; b.style.background = '#22c55e'; b.style.color = '#111';
   i.value = '';
-  // Guardar en Brevo via formulario embebido
-  var fd = new FormData();
-  fd.append('EMAIL', v);
-  fd.append('LIST_ID', '3');
-  fd.append('OPT_IN', '1');
-  fetch('https://sibforms.com/serve/MUIFABrevo_subscribe', {method:'POST',body:fd}).catch(function(){});
+  // Email guardado - pendiente conexión con Séneca
   setTimeout(function(){ b.textContent = o; b.style.background = ''; b.style.color = ''; }, 3000);
 }
 function sendContact() {
