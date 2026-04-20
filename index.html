@@ -325,6 +325,12 @@ footer{background:#295a49;padding:64px 0 32px}
   
   /* ticker */
   .ticker{overflow:hidden;max-width:100vw}
+  /* hide scroll indicator on mobile */
+  .hero-scroll{display:none}
+  /* cobertura temática - show desc on mobile */
+  .intel-desc{max-height:none!important;opacity:1!important;color:var(--muted)!important}
+  .intel-name{margin-bottom:10px!important}
+  .intel-cell{padding:20px 20px}
 
   /* nav */
   .nav-links{display:none}.hamburger{display:flex}
@@ -616,7 +622,7 @@ footer{background:#295a49;padding:64px 0 32px}
     <h1 class="hero-h"><span data-i18n="hero_h1_a">Recibe una se&ntilde;al al d&iacute;a</span><br><span class="hero-accent" data-i18n="hero_h1_b">sobre el futuro del workplace</span></h1>
     <p class="hero-sub" data-i18n="hero_sub">Criterio estrat&eacute;gico sobre sostenibilidad, tecnolog&iacute;a y valor del activo, directo a tu bandeja de entrada cada ma&ntilde;ana.</p>
     <div class="hero-card">
-      <p class="hero-card-msg"><span data-i18n="hero_card_msg">LO QUE OTROS TARDAN SEMANAS EN ENTENDER.</span> <strong class="hero-card-accent" data-i18n="hero_card_accent">T&Uacute; LO LEES HOY.</strong></p>
+      <p class="hero-card-msg"><span data-i18n="hero_card_msg">LO QUE OTROS TARDAN SEMANAS EN ENTENDER.</span><br><strong class="hero-card-accent" data-i18n="hero_card_accent">T&Uacute; LO LEES HOY.</strong></p>
       <div class="hero-card-form">
         <input type="email" placeholder="tu@email.com" id="heroEmail" class="hero-card-input" data-i18n-ph="footer_email_ph">
         <button onclick="subForm('heroEmail')" class="hero-card-btn" data-i18n="hero_subscribe">Suscribirme &#x2192;</button>
@@ -763,13 +769,13 @@ footer{background:#295a49;padding:64px 0 32px}
         <p class="contact-subtitle" data-i18n="contact_sub">El futuro del workplace se construye conversando.</p>
         <p class="contact-tagline"><em data-i18n="contact_tagline">Colaboraciones, conferencias, alianzas, proyectos y conversaciones con criterio.</em></p>
       </div>
-      <div class="contact-form">
-        <input type="text" class="cf-input" placeholder="Tu nombre" data-i18n-ph="contact_name_ph">
-        <input type="email" class="cf-input" placeholder="tu@email.com">
-        <input type="text" class="cf-input" placeholder="Asunto" data-i18n-ph="contact_subject_ph">
-        <textarea class="cf-textarea" placeholder="Cu&eacute;ntanos en qu&eacute; podemos colaborar..." data-i18n-ph="contact_msg_ph"></textarea>
-        <button class="cf-btn" onclick="sendContact()" data-i18n="contact_send">Enviar mensaje &#x2192;</button>
-      </div>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mqewloyk" method="POST">
+        <input type="text" name="nombre" class="cf-input" placeholder="Tu nombre" data-i18n-ph="contact_name_ph" required>
+        <input type="email" name="email" class="cf-input" placeholder="tu@email.com" required>
+        <input type="text" name="asunto" class="cf-input" placeholder="Asunto" data-i18n-ph="contact_subject_ph">
+        <textarea name="mensaje" class="cf-textarea" placeholder="Cu&eacute;ntanos en qu&eacute; podemos colaborar..." data-i18n-ph="contact_msg_ph"></textarea>
+        <button type="submit" class="cf-btn" data-i18n="contact_send">Enviar mensaje &#x2192;</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1990,6 +1996,28 @@ function sendContact() {
   var btn = document.querySelector('.cf-btn');
   btn.textContent = '✓ Mensaje enviado'; btn.style.background = '#22c55e';
   setTimeout(function(){ btn.textContent = 'Enviar mensaje →'; btn.style.background = ''; }, 3000);
+}
+
+// Formspree contact form handler
+var contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = contactForm.querySelector('.cf-btn');
+    var data = new FormData(contactForm);
+    fetch('https://formspree.io/f/mqewloyk', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        btn.textContent = '✓ Mensaje enviado';
+        btn.style.background = '#22c55e';
+        contactForm.reset();
+        setTimeout(function(){ btn.textContent = 'Enviar mensaje →'; btn.style.background = ''; }, 3000);
+      }
+    }).catch(function(){});
+  });
 }
 
 // Initialize: ensure page-home is visible
