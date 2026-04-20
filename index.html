@@ -319,18 +319,20 @@ footer{background:#295a49;padding:64px 0 32px}
   .hero-sub{font-size:.88rem;padding:0 8px;max-width:100%}
   .hero-card{max-width:calc(100vw - 32px)!important;width:100%;padding:20px 16px 16px}
   .hero-card-msg{white-space:normal!important;font-size:.66rem;max-width:100%}
-  .hero-card-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px;max-width:100%!important;margin-left:0!important;margin-right:0!important}
+  .hero-card-form{flex-direction:column;border-radius:8px;padding:8px;gap:8px;max-width:100%!important;margin-left:0!important;margin-right:0!important}
   .hero-card-input{padding:8px 4px;font-size:16px;width:100%}
   .hero-card-btn{border-radius:8px;padding:12px;width:100%;text-align:center}
   
   /* ticker */
   .ticker{overflow:hidden;max-width:100vw}
-  /* hide scroll indicator on mobile */
-  .hero-scroll{display:none}
+  /* scroll indicator on mobile - move up to avoid overlap */
+  .hero-scroll{bottom:80px}
   /* cobertura temática - show desc on mobile */
-  .intel-desc{max-height:none!important;opacity:1!important;color:var(--muted)!important;display:block!important}
-  .intel-name{margin-bottom:10px!important;color:var(--ink)!important}
-  .intel-cell{padding:20px 20px;background:var(--surf)!important}
+  .intel-cell{padding:20px 20px}
+  .intel-cell.tapped{background:var(--ink)!important}
+  .intel-cell.tapped .intel-name{color:#f8fafc!important;margin-bottom:14px!important}
+  .intel-cell.tapped .intel-desc{max-height:120px!important;opacity:1!important;color:rgba(248,250,252,.7)!important}
+  .intel-cell.tapped .intel-ico{border-color:rgba(248,250,252,.3)!important}
 
   /* nav */
   .nav-links{display:none}.hamburger{display:flex}
@@ -2287,5 +2289,20 @@ function closeLegal() {
   <input name="bot-field">
   <input type="email" name="email">
 </form>
+
+// Mobile tap for intel cells
+(function() {
+  if ('ontouchstart' in window) {
+    document.querySelectorAll('.intel-cell').forEach(function(cell) {
+      cell.addEventListener('click', function() {
+        var wasOpen = cell.classList.contains('tapped');
+        document.querySelectorAll('.intel-cell').forEach(function(c) {
+          c.classList.remove('tapped');
+        });
+        if (!wasOpen) cell.classList.add('tapped');
+      });
+    });
+  }
+})();
 </body>
 </html>
