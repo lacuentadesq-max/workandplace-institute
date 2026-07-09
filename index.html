@@ -43,7 +43,7 @@ nav.raised{box-shadow:0 1px 32px rgba(41,90,73,.08)}
 .hamburger span{display:block;width:20px;height:1.5px;background:var(--ink)}
 .mob-nav{display:none;position:fixed;inset:0;background:var(--bg);z-index:199;flex-direction:column;padding:80px 32px 40px}
 .mob-nav.open{display:flex}
-.mob-nav button{font-family:var(--f-s);font-size:2rem;color:var(--ink);padding:18px 0;border-bottom:1px solid var(--border);background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;text-align:left}
+.mob-nav button,.mob-nav a{font-family:var(--f-s);font-size:2rem;color:var(--ink);padding:18px 0;border-bottom:1px solid var(--border);background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;text-align:left;text-decoration:none;display:block}
 .mob-close{position:absolute;top:18px;right:24px;font-size:.78rem;background:none;border:1px solid var(--border);border-radius:2px;padding:6px 14px;color:var(--muted);cursor:pointer}
 
 /* SHARED */
@@ -194,8 +194,8 @@ footer{background:#295a49;padding:64px 0 32px}
 .f-desc{font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.75;max-width:250px}
 .f-col h4{font-size:.62rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px}
 .f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.f-col button{font-size:.79rem;color:rgba(255,255,255,.4);text-decoration:none;cursor:pointer;transition:color .15s;background:none;border:none;font-family:var(--f-g);text-align:left;padding:0}
-.f-col button:hover{color:#fff}
+.f-col button,.f-col a{font-size:.79rem;color:rgba(255,255,255,.4);text-decoration:none;cursor:pointer;transition:color .15s;background:none;border:none;font-family:var(--f-g);text-align:left;padding:0;display:inline-block}
+.f-col button:hover,.f-col a:hover{color:#fff}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .f-legal-link{color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;letter-spacing:.3px;transition:color .2s}
 .f-legal-link:hover{color:rgba(255,255,255,.65)}
@@ -460,8 +460,8 @@ footer{background:#295a49;padding:64px 0 32px}
 .f-brand{}
 .f-name-link{background:none;border:none;border-bottom:1px solid rgba(255,255,255,.3);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:rgba(255,255,255,.7);padding:0;line-height:inherit;transition:color .15s}
 .f-name-link:hover{color:#fff}
-.f-col button{color:rgba(255,255,255,.45)!important}
-.f-col button:hover{color:#fff!important}
+.f-col button,.f-col a{color:rgba(255,255,255,.45)!important}
+.f-col button:hover,.f-col a:hover{color:#fff!important}
 .f-newsletter h4{font-size:.62rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:12px}
 .f-nl-label{font-family:"Instrument Serif",Georgia,serif;font-size:.95rem;font-style:italic;color:rgba(255,255,255,.65);margin-bottom:14px;line-height:1.45}
 .f-nl-form{display:flex;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:4px 4px 4px 18px;margin-bottom:8px;gap:4px}
@@ -593,6 +593,7 @@ footer{background:#295a49;padding:64px 0 32px}
     <li><button data-page="page-nosotras" onclick="showPage('page-nosotras')" data-i18n="nav_nosotras">Sobre nosotras</button></li>
     <li><button data-page="page-signals" class="nav-hl" onclick="showPage('page-signals')">Signals from the Office</button></li>
     <li><button data-page="page-insights" class="nav-hl" onclick="showPage('page-insights')">Insights</button></li>
+    <li><a href="/autodiagnostico/" data-i18n="nav_diag">Diagnóstico</a></li>
     <li><button onclick="scrollToSection('contacto')" data-i18n="nav_contact">Contacto</button></li>
   </ul>
   <div class="lang-switcher">
@@ -608,6 +609,7 @@ footer{background:#295a49;padding:64px 0 32px}
   <button onclick="showPage('page-nosotras');closeMob()">Sobre nosotras</button>
   <button onclick="showPage('page-signals');closeMob()">Signals from the Office</button>
   <button onclick="showPage('page-insights');closeMob()">Insights</button>
+  <a href="/autodiagnostico/" data-i18n="nav_diag">Diagnóstico</a>
   <button onclick="scrollToSection('contacto');closeMob()">Contacto</button>
 </div>
 
@@ -1115,6 +1117,7 @@ footer{background:#295a49;padding:64px 0 32px}
           <li><button data-page="page-nosotras" onclick="showPage('page-nosotras')" data-i18n="nav_nosotras">Sobre nosotras</button></li>
           <li><button onclick="showPage('page-signals')" data-i18n="nav_signals">Signals from the Office</button></li>
           <li><button onclick="showPage('page-insights')" data-i18n="nav_insights">Insights</button></li>
+          <li><a href="/autodiagnostico/" data-i18n="nav_diag">Diagnóstico</a></li>
           <li><button onclick="scrollToSection('contacto')" data-i18n="nav_contact">Contacto</button></li>
         </ul>
       </div>
@@ -1162,6 +1165,7 @@ var T = {
     // Nav
     nav_home: 'Inicio',
     nav_nosotras: 'Sobre nosotras',
+    nav_diag: 'Diagnóstico',
     nav_contact: 'Contacto',
 
     // Hero
@@ -1392,6 +1396,7 @@ var T = {
     // Nav
     nav_home: 'Home',
     nav_nosotras: 'About us',
+    nav_diag: 'Self-Assessment',
     nav_contact: 'Contact',
 
     // Hero
