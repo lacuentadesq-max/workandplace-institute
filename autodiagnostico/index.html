@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autodiagnóstico · Oficina sostenible resiliente — Work &amp; Place Institute</title>
+<meta name="description" content="Evalúa en 5 minutos la madurez de tu oficina en sostenibilidad y resiliencia. Herramienta de Work & Place Institute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#5E8C74;
+    --verde-osc:#4A7560;
+    --verde-tint:#E9F1EC;
+    --verde-tint2:#F4F8F5;
+    --antracita:#3A4144;
+    --gris:#6E7776;
+    --gris-claro:#D8DDDB;
+    --fondo:#FBFBF9;
+    --blanco:#FFFFFF;
+    --radio:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Instrument Sans",-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--fondo);
+    color:var(--antracita);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Marca ---------- */
+  .brand{display:flex;align-items:center;gap:14px;padding:28px 0 0}
+  .brand svg{flex:none}
+  .brand-name{font-size:19px;font-weight:600;letter-spacing:.01em}
+  .brand-name span{color:var(--verde)}
+  .brand-claim{font-size:12.5px;color:var(--gris);letter-spacing:.02em;margin-top:1px}
+
+  /* ---------- Pantallas ---------- */
+  .screen{display:none;animation:fadeIn .35s ease}
+  .screen.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .screen{animation:none}
+    *{transition:none!important;animation:none!important}
+  }
+
+  /* ---------- Portada ---------- */
+  .hero{padding:64px 0 40px;position:relative}
+  .eyebrow{
+    display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--verde-osc);
+    border:1px solid var(--verde);border-radius:100px;padding:6px 14px;margin-bottom:26px;
+  }
+  h1{font-size:clamp(30px,5.4vw,50px);font-weight:700;line-height:1.08;letter-spacing:-.015em;max-width:15ch}
+  h1 em{font-style:normal;color:var(--verde)}
+  .hero p.lead{font-size:17.5px;color:var(--gris);max-width:56ch;margin:22px 0 8px}
+  .hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin:26px 0 34px;font-size:14px;color:var(--gris)}
+  .hero-meta b{color:var(--antracita);font-weight:600}
+
+  .dims-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 38px;
+  }
+  @media(max-width:720px){.dims-grid{grid-template-columns:repeat(2,1fr)}}
+  .dim-chip{
+    background:var(--blanco);border:1px solid var(--gris-claro);border-radius:var(--radio);
+    padding:13px 14px;font-size:13.5px;font-weight:500;position:relative;overflow:hidden;
+  }
+  .dim-chip::after{
+    content:"";position:absolute;right:-14px;bottom:-14px;width:34px;height:34px;
+    border-radius:50%;background:var(--verde-tint);
+  }
+  .dim-chip.res{border-color:var(--verde)}
+  .dim-chip.res::after{background:var(--verde);opacity:.85}
+  .dim-chip small{display:block;font-weight:400;color:var(--gris);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--antracita);color:#fff;border:none;cursor:pointer;
+    font-family:inherit;font-size:16px;font-weight:600;
+    padding:15px 28px;border-radius:100px;transition:background .2s,transform .15s;
+  }
+  .btn:hover{background:var(--verde-osc)}
+  .btn:active{transform:scale(.98)}
+  .btn:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+  .btn.secondary{background:transparent;color:var(--antracita);border:1.5px solid var(--gris-claro)}
+  .btn.secondary:hover{border-color:var(--verde);color:var(--verde-osc);background:var(--verde-tint2)}
+  .btn.small{padding:11px 20px;font-size:14px}
+
+  /* ---------- Cuestionario ---------- */
+  .quiz-head{padding:34px 0 6px}
+  .progress-row{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+  .qc-wrap{position:relative;width:52px;height:52px;flex:none}
+  .qc-wrap svg{transform:rotate(-90deg)}
+  .qc-num{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;color:var(--antracita);
+  }
+  .progress-info{flex:1}
+  .progress-info .dim-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-osc)}
+  .progress-info h2{font-size:clamp(20px,3.4vw,27px);font-weight:700;letter-spacing:-.01em;line-height:1.15}
+  .dim-intro{font-size:14.5px;color:var(--gris);margin:6px 0 22px;max-width:62ch}
+
+  .q-card{
+    background:var(--blanco);border:1px solid var(--gris-claro);border-radius:var(--radio);
+    padding:20px 22px;margin-bottom:14px;
+  }
+  .q-text{font-size:16px;font-weight:600;margin-bottom:14px}
+  .q-num{color:var(--verde);margin-right:6px}
+  .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  @media(max-width:720px){.opts{grid-template-columns:1fr 1fr}}
+  .opt{position:relative}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .opt label{
+    display:block;cursor:pointer;border:1.5px solid var(--gris-claro);border-radius:8px;
+    padding:10px 10px 9px;font-size:12.5px;line-height:1.3;color:var(--gris);
+    transition:border-color .15s,background .15s,color .15s;height:100%;
+  }
+  .opt label b{display:block;font-size:15px;color:var(--antracita);margin-bottom:2px}
+  .opt label:hover{border-color:var(--verde)}
+  .opt input:checked + label{border-color:var(--verde);background:var(--verde-tint);color:var(--verde-osc)}
+  .opt input:checked + label b{color:var(--verde-osc)}
+  .opt input:focus-visible + label{outline:3px solid var(--verde);outline-offset:2px}
+
+  .quiz-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:26px 0 60px}
+  .quiz-warn{font-size:13.5px;color:#A3541F;display:none}
+  .quiz-warn.show{display:block}
+
+  /* ---------- Resultados ---------- */
+  .results-head{padding:44px 0 8px;text-align:center}
+  .results-head .eyebrow{margin-bottom:18px}
+  .score-big{font-size:clamp(52px,9vw,84px);font-weight:700;line-height:1;letter-spacing:-.02em}
+  .score-big small{font-size:.38em;font-weight:600;color:var(--gris)}
+  .level-name{font-size:clamp(21px,3.6vw,28px);font-weight:700;color:var(--verde-osc);margin:8px 0 10px}
+  .level-desc{font-size:16px;color:var(--gris);max-width:58ch;margin:0 auto 8px}
+
+  .levels-bar{max-width:560px;margin:26px auto 0}
+  .levels-track{display:flex;height:10px;border-radius:100px;overflow:hidden}
+  .levels-track div{flex:1}
+  .lt1{background:#D9C1B4}.lt2{background:#CFD8C8}.lt3{background:#9DC0AC}.lt4{background:var(--verde)}
+  .levels-labels{display:flex;font-size:10.5px;color:var(--gris);margin-top:6px;letter-spacing:.03em}
+  .levels-labels span{flex:1;text-align:center}
+  .marker{position:relative;height:0}
+  .marker div{
+    position:absolute;top:-4px;width:4px;height:18px;background:var(--antracita);
+    border-radius:2px;transform:translateX(-2px);transition:left 1s ease;
+  }
+
+  .radar-section{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;margin:52px 0 10px}
+  @media(max-width:760px){.radar-section{grid-template-columns:1fr}}
+  .radar-box{background:var(--blanco);border:1px solid var(--gris-claro);border-radius:var(--radio);padding:18px}
+  .radar-box h3, .bars-box h3{font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--verde-osc);margin-bottom:10px}
+  #radar{width:100%;height:auto;display:block}
+  .radar-poly{
+    transform-origin:210px 200px;transform-box:view-box;
+    animation:radarGrow .8s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .radar-dot{animation:dotIn .4s ease .55s both}
+  @keyframes radarGrow{from{transform:scale(0)}to{transform:scale(1)}}
+  @keyframes dotIn{from{opacity:0}to{opacity:1}}
+
+  .bar-row{margin-bottom:13px}
+  .bar-top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:5px}
+  .bar-top b{font-weight:600}
+  .bar-top span{color:var(--gris);font-variant-numeric:tabular-nums}
+  .bar-track{height:8px;background:var(--verde-tint2);border:1px solid var(--gris-claro);border-radius:100px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--verde);border-radius:100px;width:0;transition:width .9s ease}
+  .bar-fill.low{background:#C89B85}
+
+  .insights{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:34px 0}
+  @media(max-width:720px){.insights{grid-template-columns:1fr}}
+  .insight{
+    border-radius:var(--radio);padding:20px 22px;position:relative;overflow:hidden;
+  }
+  .insight::after{content:"";position:absolute;right:-22px;bottom:-22px;width:70px;height:70px;border-radius:50%;opacity:.5}
+  .insight.strong{background:var(--verde-tint);border:1px solid var(--verde)}
+  .insight.strong::after{background:var(--verde)}
+  .insight.weak{background:#F7EFEA;border:1px solid #C89B85}
+  .insight.weak::after{background:#C89B85}
+  .insight h4{font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px}
+  .insight.strong h4{color:var(--verde-osc)}
+  .insight.weak h4{color:#9A5A34}
+  .insight .i-dim{font-size:17.5px;font-weight:700;margin-bottom:5px}
+  .insight p{font-size:14px;color:var(--gris)}
+
+  .recs{margin:14px 0 40px}
+  .recs h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  .rec{
+    background:var(--blanco);border:1px solid var(--gris-claro);border-left:4px solid var(--verde);
+    border-radius:var(--radio);padding:16px 20px;margin-bottom:10px;
+  }
+  .rec b{display:block;font-size:14.5px;margin-bottom:2px}
+  .rec p{font-size:14px;color:var(--gris)}
+
+  .results-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:10px 0 54px}
+
+  .cta-final{
+    background:var(--antracita);color:#fff;border-radius:14px;
+    padding:36px 34px;margin-bottom:60px;position:relative;overflow:hidden;
+  }
+  .cta-final::after{
+    content:"";position:absolute;right:-70px;bottom:-90px;width:240px;height:240px;
+    border-radius:50%;background:var(--verde);opacity:.9;
+  }
+  .cta-final h3{font-size:clamp(20px,3vw,26px);font-weight:700;line-height:1.2;max-width:24ch;position:relative;z-index:1}
+  .cta-final p{font-size:15px;color:#C9CFCC;margin:10px 0 0;max-width:52ch;position:relative;z-index:1}
+
+  footer{border-top:1px solid var(--gris-claro);padding:22px 0 34px;font-size:12.5px;color:var(--gris);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  /* ---------- Impresión ---------- */
+  @media print{
+    body{background:#fff}
+    .no-print,.results-actions,.cta-final{display:none!important}
+    .screen{display:none}
+    #screen-results{display:block!important}
+    .radar-section{grid-template-columns:1fr 1fr;page-break-inside:avoid}
+    .q-card,.insight,.rec{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Marca WPI -->
+  <header class="brand" aria-label="Work & Place Institute">
+    <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <rect x="3" y="3" width="38" height="38" fill="none" stroke="#3A4144" stroke-width="5"/>
+      <path d="M 38.5 38.5 L 20 38.5 A 18.5 18.5 0 0 1 38.5 20 Z" fill="#5E8C74"/>
+    </svg>
+    <div>
+      <div class="brand-name">Work <span>&amp;</span> Place <span style="color:var(--gris);font-weight:400">Institute</span></div>
+      <div class="brand-claim">The economics of sustainable places</div>
+    </div>
+  </header>
+
+  <!-- ==================== PORTADA ==================== -->
+  <section class="screen active" id="screen-intro">
+    <div class="hero">
+      <span class="eyebrow">Autodiagnóstico · 5 minutos</span>
+      <h1>¿Cómo de <em>preparada</em> está tu oficina?</h1>
+      <p class="lead">La oficina sostenible ya no se define por lo que ahorra cuando las condiciones son normales, sino por lo que protege cuando dejan de serlo. Este autodiagnóstico evalúa la madurez de tu espacio de trabajo en las ocho dimensiones de la oficina sostenible resiliente.</p>
+      <div class="hero-meta">
+        <div><b>32</b> preguntas</div>
+        <div><b>8</b> dimensiones</div>
+        <div><b>Resultado</b> con perfil de araña</div>
+        <div><b>Anónimo</b> · nada se guarda</div>
+      </div>
+      <div class="dims-grid" aria-hidden="true">
+        <div class="dim-chip"><small>Base sostenible</small>Eficiencia y energía</div>
+        <div class="dim-chip"><small>Base sostenible</small>Salud y bienestar</div>
+        <div class="dim-chip"><small>Base sostenible</small>Circularidad y recursos</div>
+        <div class="dim-chip"><small>Base sostenible</small>Datos, tecnología e IA</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Resiliencia climática</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Ciberseguridad del edificio</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Continuidad operativa</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Gobierno y economía</div>
+      </div>
+      <button class="btn" onclick="startQuiz()">Comenzar el diagnóstico
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p style="font-size:12.5px;color:var(--gris);margin-top:16px">Puntúa cada práctica según su grado real de implantación: de «no existe» a «se mide, se prueba y se revisa».</p>
+    </div>
+  </section>
+
+  <!-- ==================== CUESTIONARIO ==================== -->
+  <section class="screen" id="screen-quiz">
+    <div class="quiz-head">
+      <div class="progress-row">
+        <div class="qc-wrap" aria-hidden="true">
+          <svg width="52" height="52" viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="22" fill="none" stroke="#E3E7E5" stroke-width="5"/>
+            <circle id="qc-arc" cx="26" cy="26" r="22" fill="none" stroke="#5E8C74" stroke-width="5"
+                    stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="138.2"/>
+          </svg>
+          <div class="qc-num" id="qc-num">1/8</div>
+        </div>
+        <div class="progress-info">
+          <div class="dim-label" id="dim-label"></div>
+          <h2 id="dim-title"></h2>
+        </div>
+      </div>
+      <p class="dim-intro" id="dim-intro"></p>
+      <div id="questions"></div>
+      <p class="quiz-warn" id="quiz-warn">Responde las cuatro preguntas para continuar.</p>
+      <div class="quiz-nav">
+        <button class="btn secondary small" id="btn-back" onclick="prevDim()">← Anterior</button>
+        <button class="btn small" id="btn-next" onclick="nextDim()">Siguiente →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESULTADOS ==================== -->
+  <section class="screen" id="screen-results">
+    <div class="results-head">
+      <span class="eyebrow">Tu resultado</span>
+      <div class="score-big"><span id="score-total">0</span><small> / 96</small></div>
+      <div class="level-name" id="level-name"></div>
+      <p class="level-desc" id="level-desc"></p>
+      <div class="levels-bar" aria-hidden="true">
+        <div class="levels-track"><div class="lt1"></div><div class="lt2"></div><div class="lt3"></div><div class="lt4"></div></div>
+        <div class="marker"><div id="marker"></div></div>
+        <div class="levels-labels"><span>Vulnerable</span><span>Reactiva</span><span>Preparada</span><span>Resiliente</span></div>
+      </div>
+    </div>
+
+    <div class="radar-section">
+      <div class="radar-box">
+        <h3>Perfil de tu oficina</h3>
+        <svg id="radar" viewBox="0 0 420 400" role="img" aria-label="Gráfico de araña con la puntuación por dimensión"></svg>
+      </div>
+      <div class="bars-box">
+        <h3>Puntuación por dimensión</h3>
+        <div id="bars"></div>
+      </div>
+    </div>
+
+    <div class="insights">
+      <div class="insight strong">
+        <h4>Tu punto fuerte</h4>
+        <div class="i-dim" id="strong-dim"></div>
+        <p id="strong-text"></p>
+      </div>
+      <div class="insight weak">
+        <h4>Tu mayor brecha</h4>
+        <div class="i-dim" id="weak-dim"></div>
+        <p id="weak-text"></p>
+      </div>
+    </div>
+
+    <div class="recs">
+      <h3>Por dónde empezar</h3>
+      <div id="recs-list"></div>
+    </div>
+
+    <div class="results-actions no-print">
+      <button class="btn" onclick="window.print()">Descargar resultados (PDF)</button>
+      <button class="btn secondary" onclick="restart()">Repetir el diagnóstico</button>
+    </div>
+
+    <div class="cta-final no-print">
+      <h3>La pregunta ya no es si tu oficina es eficiente. Es si está preparada.</h3>
+      <p>En Work &amp; Place Institute ayudamos a organizaciones a convertir el espacio de trabajo en una infraestructura sostenible, resiliente y económicamente inteligente. Descubre el Manifiesto de la oficina sostenible y nuestros programas.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Work &amp; Place Institute. Todos los derechos reservados.</div>
+    <div>Autodiagnóstico de la oficina sostenible resiliente</div>
+  </footer>
+</div>
+
+<script>
+// ==================== Datos ====================
+const DIMS = [
+  {
+    id:"energia", short:"Energía", title:"Eficiencia y energía", tipo:"Base sostenible · dimensión 1 de 8",
+    intro:"El punto de partida clásico: consumir menos y mejor. La madurez está en gestionar en tiempo real, no en revisar facturas a mes vencido.",
+    qs:[
+      "¿Se monitoriza el consumo energético en tiempo real, por zonas o usos?",
+      "¿Se ajustan climatización e iluminación a la ocupación real del edificio?",
+      "¿Existen objetivos de reducción de consumo con seguimiento periódico?",
+      "¿Se ha evaluado la dependencia energética del edificio y sus alternativas de suministro?"
+    ],
+    rec:{t:"Empieza por medir por zonas", p:"Sin datos de consumo desagregados no hay gestión: solo facturas. Instalar submedición y fijar una rutina mensual de revisión es la primera palanca de ahorro y de anticipación."}
+  },
+  {
+    id:"bienestar", short:"Bienestar", title:"Salud y bienestar", tipo:"Base sostenible · dimensión 2 de 8",
+    intro:"Sin bienestar no hay productividad. La oficina saludable se mide en aire, confort, luz y en cómo se escucha a las personas.",
+    qs:[
+      "¿Se miden la calidad del aire interior (CO₂, partículas) y el confort térmico?",
+      "¿Existen umbrales de actuación cuando el confort o la calidad del aire se degradan?",
+      "¿Se recoge de forma sistemática la experiencia de las personas sobre el espacio?",
+      "¿Se considera el impacto en salud y rendimiento al tomar decisiones sobre el edificio?"
+    ],
+    rec:{t:"Pasa de medir a actuar", p:"Muchos edificios tienen sensores y ningún umbral. Define a partir de qué nivel de CO₂ o temperatura se actúa, quién actúa y cómo se comunica. La medición sin protocolo es decoración."}
+  },
+  {
+    id:"circularidad", short:"Circularidad", title:"Circularidad y recursos", tipo:"Base sostenible · dimensión 3 de 8",
+    intro:"Mobiliario, obras, agua y residuos: donde la sostenibilidad se convierte en CapEx evitado y en menor dependencia de cadenas frágiles.",
+    qs:[
+      "¿Se aplican criterios de reutilización antes de comprar mobiliario o acometer obras?",
+      "¿Se mide y gestiona la generación de residuos, incluida la de obras y fit-out?",
+      "¿Se monitoriza el consumo de agua y se detectan fugas de forma temprana?",
+      "¿Se incorporan criterios de circularidad en compras y contratos con proveedores?"
+    ],
+    rec:{t:"Haz visible el CapEx evitado", p:"La circularidad convence cuando se traduce en euros: cada compra evitada, cada mueble reutilizado, cada obra redimensionada. Empieza por un inventario de activos reutilizables antes del próximo proyecto."}
+  },
+  {
+    id:"datos", short:"Datos e IA", title:"Datos, tecnología e IA", tipo:"Base sostenible · dimensión 4 de 8",
+    intro:"El sistema nervioso de la oficina. Sin datos, la sostenibilidad se queda en intención; con datos pobres, en reporting retrospectivo.",
+    qs:[
+      "¿Existe una base de datos fiable del edificio: ocupación real, consumos, incidencias?",
+      "¿Se usan los datos para anticipar (predicción, anomalías), no solo para reportar el pasado?",
+      "¿Se cruzan datos internos con señales externas (meteorología, precio de la energía, alertas)?",
+      "¿Existe una política de uso de IA en la gestión del edificio, con límites y supervisión humana?"
+    ],
+    rec:{t:"Gobierna antes de automatizar", p:"Antes del primer piloto de IA, define la política: qué puede decidir un agente, qué requiere validación humana, quién audita. La automatización sin gobierno no es progreso: es riesgo con mejor productividad."}
+  },
+  {
+    id:"clima", short:"Clima", title:"Resiliencia climática", tipo:"Frontera resiliente · dimensión 5 de 8",
+    intro:"Adaptarse a un clima que ya cambió, no solo mitigar emisiones. Olas de calor, lluvias extremas y cortes eléctricos son variables de gestión.",
+    qs:[
+      "¿Existe un mapa de vulnerabilidad climática del edificio (calor, agua, aire, energía, accesos)?",
+      "¿Hay protocolos ante eventos extremos —ola de calor, lluvia torrencial— con umbrales y responsables?",
+      "¿Se ha probado la continuidad de lo crítico ante un corte eléctrico?",
+      "¿Existen criterios definidos para activar teletrabajo preventivo ante alertas meteorológicas?"
+    ],
+    rec:{t:"Dibuja el mapa de vulnerabilidad", p:"Una sesión de trabajo con mantenimiento, seguridad y riesgos basta para el primer mapa: qué zonas del edificio sufren con calor, agua o falta de energía, y qué protege a las personas en cada caso. Después, protocolos y ensayo."}
+  },
+  {
+    id:"ciber", short:"Ciber", title:"Ciberseguridad del edificio", tipo:"Frontera resiliente · dimensión 6 de 8",
+    intro:"La oficina conectada también es superficie de ataque. Una oficina inteligente que no es cibersegura es una vulnerabilidad con buena interfaz.",
+    qs:[
+      "¿Existe un inventario actualizado de los dispositivos y sistemas conectados del edificio?",
+      "¿Están segmentadas las redes de empleados, invitados, proveedores y sistemas técnicos (OT)?",
+      "¿Se controlan y revisan los accesos remotos de mantenedores y proveedores?",
+      "¿Hay un protocolo si fallan los sistemas físicos digitalizados: accesos, climatización, reservas?"
+    ],
+    rec:{t:"Convoca a FM, IT y ciberseguridad", p:"El primer paso no es tecnológico, es organizativo: una sesión conjunta para inventariar qué hay conectado, quién accede en remoto y qué se desconecta primero ante un incidente. El edificio es parte del perímetro."}
+  },
+  {
+    id:"continuidad", short:"Continuidad", title:"Continuidad operativa", tipo:"Frontera resiliente · dimensión 7 de 8",
+    intro:"La oficina como pieza de continuidad de negocio. Operar en «modo degradado» no es improvisar: es haber decidido antes qué se mantiene y quién manda.",
+    qs:[
+      "¿Están definidos los servicios mínimos del edificio en modo degradado?",
+      "¿Están clasificados los proveedores por criticidad, exigiéndoles planes de continuidad?",
+      "¿El mantenimiento es preventivo o predictivo, priorizado por criticidad y vida útil?",
+      "¿Se realizan simulacros más allá del de incendio: climáticos, digitales, operativos?"
+    ],
+    rec:{t:"Define el modo oficina degradada", p:"Decide por escrito qué servicios mínimos se mantienen si falla una planta, el sistema de reservas o un proveedor clave: con qué recursos, durante cuánto tiempo y bajo qué mando. Un plan que no se ha probado es una hipótesis."}
+  },
+  {
+    id:"gobierno", short:"Gobierno", title:"Gobierno y economía", tipo:"Frontera resiliente · dimensión 8 de 8",
+    intro:"Quién decide, quién mide y quién responde. Lo que no se gobierna acaba improvisándose, y la improvisación es lo contrario de la resiliencia.",
+    qs:[
+      "¿Hay un dueño claro del riesgo de la oficina, con nombre y apellidos?",
+      "¿Existe coordinación estable entre FM, IT, riesgos, sostenibilidad, personas y compras?",
+      "¿Se reportan a dirección indicadores del edificio: coste, riesgo, continuidad, personas?",
+      "¿Se conoce el coste total de ocupación y el impacto económico de la sostenibilidad?"
+    ],
+    rec:{t:"Pon un dueño a cada riesgo", p:"El principio que ordena todo lo demás: cada riesgo con un dueño, cada dueño con indicadores, cada indicador con un foro donde se revisa. Si la oficina no está en el mapa de riesgos corporativo, ese es el primer punto del orden del día."}
+  }
+];
+
+const OPTS = [
+  {v:0, b:"0", t:"No existe"},
+  {v:1, b:"1", t:"Informal o parcial"},
+  {v:2, b:"2", t:"Documentado"},
+  {v:3, b:"3", t:"Se mide y se prueba"}
+];
+
+const LEVELS = [
+  {min:0,  max:24, name:"Oficina vulnerable",
+   desc:"La resiliencia de tu oficina depende hoy de la suerte. La prioridad no es tecnológica: es dibujar el mapa de riesgos y poner un dueño a cada uno."},
+  {min:25, max:48, name:"Oficina reactiva",
+   desc:"Tu oficina responde a los problemas, pero tarde y sin protocolo. La prioridad es documentar lo que hoy es informal y probarlo: un plan que no se ensaya es una hipótesis."},
+  {min:49, max:72, name:"Oficina preparada",
+   desc:"Existe sistema: prácticas documentadas y capacidad de respuesta. La prioridad ahora es medir, ensayar con regularidad y cerrar las brechas de gobierno y anticipación."},
+  {min:73, max:96, name:"Oficina sostenible resiliente",
+   desc:"Estás en el grupo de cabeza: tu oficina no solo reduce impacto, sino que protege la continuidad. El reto ya no es construir, sino no relajarse: mejora continua y aprendizaje de cada incidente."}
+];
+
+// ==================== Estado ====================
+let current = 0;
+const answers = DIMS.map(d => d.qs.map(() => null));
+
+// ==================== Navegación ====================
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function startQuiz(){ current = 0; renderDim(); show("screen-quiz"); }
+
+function renderDim(){
+  const d = DIMS[current];
+  document.getElementById("dim-label").textContent = d.tipo;
+  document.getElementById("dim-title").textContent = d.title;
+  document.getElementById("dim-intro").textContent = d.intro;
+  document.getElementById("qc-num").textContent = (current+1) + "/8";
+  const arc = document.getElementById("qc-arc");
+  const c = 138.2;
+  arc.style.strokeDashoffset = c - c * ((current+1)/DIMS.length);
+
+  const box = document.getElementById("questions");
+  box.innerHTML = "";
+  d.qs.forEach((q,qi)=>{
+    const card = document.createElement("div");
+    card.className = "q-card";
+    const opts = OPTS.map(o=>{
+      const id = `q${current}_${qi}_${o.v}`;
+      const checked = answers[current][qi] === o.v ? "checked" : "";
+      return `<div class="opt">
+        <input type="radio" name="q${current}_${qi}" id="${id}" value="${o.v}" ${checked}
+               onchange="answers[${current}][${qi}]=${o.v};document.getElementById('quiz-warn').classList.remove('show')">
+        <label for="${id}"><b>${o.b}</b>${o.t}</label>
+      </div>`;
+    }).join("");
+    card.innerHTML = `<div class="q-text"><span class="q-num">${current*4+qi+1}.</span>${q}</div><div class="opts">${opts}</div>`;
+    box.appendChild(card);
+  });
+
+  document.getElementById("btn-back").style.visibility = current === 0 ? "hidden" : "visible";
+  document.getElementById("btn-next").textContent = current === DIMS.length-1 ? "Ver mi resultado →" : "Siguiente →";
+  document.getElementById("quiz-warn").classList.remove("show");
+}
+
+function nextDim(){
+  if (answers[current].some(a => a === null)){
+    document.getElementById("quiz-warn").classList.add("show");
+    return;
+  }
+  if (current < DIMS.length - 1){ current++; renderDim(); window.scrollTo({top:0,behavior:"smooth"}); }
+  else { showResults(); }
+}
+function prevDim(){ if(current>0){ current--; renderDim(); window.scrollTo({top:0,behavior:"smooth"}); } }
+
+function restart(){
+  for(let i=0;i<answers.length;i++) for(let j=0;j<answers[i].length;j++) answers[i][j]=null;
+  show("screen-intro");
+}
+
+// ==================== Resultados ====================
+function showResults(){
+  const dimScores = answers.map(a => a.reduce((x,y)=>x+y,0));   // 0-12 cada una
+  const total = dimScores.reduce((x,y)=>x+y,0);                  // 0-96
+  const level = LEVELS.find(l => total >= l.min && total <= l.max);
+
+  document.getElementById("score-total").textContent = total;
+  document.getElementById("level-name").textContent = level.name;
+  document.getElementById("level-desc").textContent = level.desc;
+
+  show("screen-results");
+  requestAnimationFrame(()=>{
+    document.getElementById("marker").style.left = Math.min(99.2, Math.max(0.8, total/96*100)) + "%";
+  });
+
+  // Barras
+  const bars = document.getElementById("bars");
+  bars.innerHTML = "";
+  dimScores.forEach((s,i)=>{
+    const pct = Math.round(s/12*100);
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    row.innerHTML = `<div class="bar-top"><b>${DIMS[i].title}</b><span>${s}/12</span></div>
+      <div class="bar-track"><div class="bar-fill ${s<=5?'low':''}" data-w="${pct}"></div></div>`;
+    bars.appendChild(row);
+  });
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll(".bar-fill").forEach(b => b.style.width = b.dataset.w + "%");
+  }));
+
+  // Fuerte / débil
+  let maxI = 0, minI = 0;
+  dimScores.forEach((s,i)=>{ if(s>dimScores[maxI])maxI=i; if(s<dimScores[minI])minI=i; });
+  document.getElementById("strong-dim").textContent = DIMS[maxI].title;
+  document.getElementById("strong-text").textContent =
+    `${dimScores[maxI]}/12 puntos. Es tu base de credibilidad interna: úsala como palanca y como ejemplo para elevar el resto de dimensiones.`;
+  document.getElementById("weak-dim").textContent = DIMS[minI].title;
+  document.getElementById("weak-text").textContent =
+    `${dimScores[minI]}/12 puntos. Una oficina es tan resiliente como su dimensión más frágil: aquí está tu mayor retorno por esfuerzo.`;
+
+  // Recomendaciones: las 3 dimensiones con menor puntuación
+  const order = dimScores.map((s,i)=>({s,i})).sort((a,b)=>a.s-b.s).slice(0,3);
+  const recs = document.getElementById("recs-list");
+  recs.innerHTML = "";
+  order.forEach(o=>{
+    const r = DIMS[o.i].rec;
+    const div = document.createElement("div");
+    div.className = "rec";
+    div.innerHTML = `<b>${DIMS[o.i].title} · ${r.t}</b><p>${r.p}</p>`;
+    recs.appendChild(div);
+  });
+
+  drawRadar(dimScores);
+}
+
+// ==================== Gráfico de araña (SVG) ====================
+function drawRadar(scores){
+  const svg = document.getElementById("radar");
+  const cx = 210, cy = 200, R = 130, N = DIMS.length;
+  const pt = (i, r) => {
+    const ang = -Math.PI/2 + i * 2*Math.PI/N;
+    return [cx + r*Math.cos(ang), cy + r*Math.sin(ang)];
+  };
+  let s = "";
+
+  // Anillos (25/50/75/100)
+  for(let ring=1; ring<=4; ring++){
+    const pts = Array.from({length:N},(_,i)=>pt(i, R*ring/4).join(",")).join(" ");
+    s += `<polygon points="${pts}" fill="${ring===4?'#F4F8F5':'none'}" stroke="#D8DDDB" stroke-width="1"/>`;
+  }
+  // Radios + etiquetas
+  for(let i=0;i<N;i++){
+    const [x,y] = pt(i,R);
+    s += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#D8DDDB" stroke-width="1"/>`;
+    const [lx,ly] = pt(i, R+26);
+    let anchor = "middle";
+    if (lx > cx+8) anchor = "start";
+    if (lx < cx-8) anchor = "end";
+    s += `<text x="${lx}" y="${ly+4}" text-anchor="${anchor}" font-size="12.5" font-weight="600" fill="#3A4144">${DIMS[i].short}</text>`;
+    const [sx,sy] = pt(i, R+11);
+    s += `<text x="${sx}" y="${sy+3}" text-anchor="middle" font-size="10" fill="#6E7776">${scores[i]}</text>`;
+  }
+  // Polígono de resultados
+  const poly = scores.map((sc,i)=>pt(i, R * sc/12));
+  const polyStr = poly.map(p=>p.join(",")).join(" ");
+  s += `<polygon class="radar-poly" points="${polyStr}" fill="#5E8C74" fill-opacity="0.28" stroke="#4A7560" stroke-width="2.5" stroke-linejoin="round"/>`;
+  // Puntos
+  poly.forEach(p=>{
+    s += `<circle class="radar-dot" cx="${p[0]}" cy="${p[1]}" r="4" fill="#4A7560" stroke="#fff" stroke-width="1.5"/>`;
+  });
+
+  svg.innerHTML = s;
+}
+</script>
+</body>
+</html>
