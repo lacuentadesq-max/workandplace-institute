@@ -298,6 +298,14 @@ footer{background:#295a49;padding:64px 0 32px}
 
 .art-body a{color:var(--petrol)}
 .art-body strong{color:var(--ink);font-weight:600}
+.art-close{max-width:860px;margin:34px 0 0;padding:34px 0 0;border-top:1px solid var(--border)}
+.art-close-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:12px}
+.art-close p{font-size:.96rem;color:var(--ink);line-height:1.75;max-width:620px;margin-bottom:18px}
+.art-close-form{display:flex;width:100%;max-width:420px;background:var(--surf);border:1px solid var(--bmd);border-radius:100px;padding:5px 5px 5px 18px;box-shadow:0 2px 16px rgba(41,90,73,.07)}
+.art-close-form input{flex:1;border:none;outline:none;background:transparent;font-family:var(--f-g);font-size:.85rem;color:var(--ink);min-width:0}
+.art-close-form input::placeholder{color:rgba(41,90,73,.3)}
+.art-close-form button{flex-shrink:0;background:var(--ink);color:#fff;border:none;border-radius:100px;padding:10px 18px;font-family:var(--f-g);font-size:.78rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
+.art-close-form button:hover{background:#1c3e33}
 
 /* INSIGHTS PAGE */
 .pg-insights{padding-top:62px}
@@ -461,6 +469,10 @@ footer{background:#295a49;padding:64px 0 32px}
   .art-body table{display:block;overflow-x:auto;white-space:nowrap}
   .art-body h3{font-size:.65rem;margin:32px 0 14px}
   .art-body h4{font-size:1.1rem;margin:28px 0 6px}
+  .art-close{max-width:100%;margin-top:24px;padding-top:28px}
+  .art-close-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px;max-width:100%}
+  .art-close-form input{font-size:16px}
+  .art-close-form button{border-radius:8px;padding:12px;width:100%}
 
   /* insights page */
   .pg-insights{overflow-x:hidden}
@@ -1170,6 +1182,14 @@ footer{background:#295a49;padding:64px 0 32px}
       <p class="art-meta" id="art-meta"></p>
     </div>
     <div class="art-body" id="art-body"></div>
+    <div class="art-close">
+      <div class="art-close-title" data-i18n="art_close_title">Signals from the Office</div>
+      <p data-i18n="art_close_text">Cada viernes seleccionamos y analizamos las se&ntilde;ales que est&aacute;n redefiniendo el futuro de la oficina.</p>
+      <div class="art-close-form">
+        <input type="email" placeholder="tu@email.com" id="artEmail" data-i18n-ph="footer_email_ph">
+        <button onclick="subForm('artEmail')" data-i18n="art_close_btn">Suscribirse &#x2192;</button>
+      </div>
+    </div>
   </div>
 </div><!-- /page-signals -->
 
@@ -1768,6 +1788,9 @@ var T = {
     sig_sub_label: 'Suscríbete para recibirlas cada semana',
     sig_archive_label: 'Newsletter anteriores',
     sig_por: 'Por',
+    art_close_title: 'Signals from the Office',
+    art_close_text: 'Cada viernes seleccionamos y analizamos las señales que están redefiniendo el futuro de la oficina.',
+    art_close_btn: 'Suscribirse →',
 
     // Insights page
     ins_label: 'Insights',
@@ -2042,6 +2065,9 @@ var T = {
     sig_sub_label: 'Subscribe to receive them every week',
     sig_archive_label: 'Previous newsletters',
     sig_por: 'By',
+    art_close_title: 'Signals from the Office',
+    art_close_text: 'Every Friday we select and analyse the signals redefining the future of the office.',
+    art_close_btn: 'Subscribe →',
 
     // Insights page
     ins_label: 'Insights',
@@ -2682,7 +2708,7 @@ function subForm(id) {
   var b = i.nextElementSibling;
   if (!b) return;
   var o = b.textContent;
-  var source = id === 'heroEmail' ? 'hero' : (id === 'footEmail' ? 'footer' : 'newsletter');
+  var source = id === 'heroEmail' ? 'hero' : (id === 'footEmail' ? 'footer' : (id === 'artEmail' ? 'article' : 'newsletter'));
   var data = new FormData();
   data.append('email', v);
   data.append('asunto', 'Nueva suscripción newsletter');
