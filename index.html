@@ -1493,7 +1493,7 @@ footer{background:#295a49;padding:64px 0 32px}
     </div>
 
     <div class="results-actions no-print">
-      <button class="btn" onclick="window.print()" data-i18n="diag_btn_pdf">Descargar resultados (PDF)</button>
+      <button class="btn" onclick="Diag.downloadPdf()" data-i18n="diag_btn_pdf">Descargar resultados (PDF)</button>
       <button class="btn secondary" onclick="Diag.restart()" data-i18n="diag_btn_restart">Repetir el diagnóstico</button>
     </div>
 
@@ -2527,7 +2527,7 @@ function subForm(id) {
 
   b.disabled = true;
   b.textContent = 'Enviando...';
-  fetch('https://botcookies.breogancapital.co.uk/wpi/subscribe', {
+  fetch('https://wpi-newsletter.lacuentadesq.workers.dev', {
     method: 'POST',
     body: JSON.stringify({
       email: v,
@@ -3266,6 +3266,45 @@ window.addEventListener('beforeprint', function(){
   d.textContent = (isEn ? 'Report generated on ' : 'Informe generado el ') + txt;
 });
 
+// ==================== Descarga de PDF (robusta en móvil) ====================
+function downloadPdf(){
+  var ua = navigator.userAgent || '';
+  // Navegadores "in-app" (webviews embebidos) conocidos por no soportar window.print()
+  var inAppPatterns = [
+    'Instagram', 'FBAN', 'FBAV', 'FB_IAB', 'Line/', 'MicroMessenger',
+    'TikTok', 'Twitter', 'Pinterest', 'GSA/', 'LinkedInApp'
+  ];
+  var isInApp = inAppPatterns.some(function(p){ return ua.indexOf(p) !== -1; });
+  var isWhatsApp = ua.indexOf('WhatsApp') !== -1;
+
+  if (isInApp || isWhatsApp){
+    var isEn = (typeof LANG !== 'undefined' && LANG === 'en');
+    alert(isEn
+      ? 'This app\'s built-in browser doesn\'t support saving PDFs. Please open this page in Safari or Chrome (tap the ⋯ or share icon and choose "Open in Browser"), then tap "Download results" again.'
+      : 'El navegador integrado de esta app no permite guardar el PDF. Abre esta página en Safari o Chrome (toca el icono ⋯ o compartir y elige "Abrir en el navegador") y vuelve a pulsar "Descargar resultados".');
+    return;
+  }
+
+  if (typeof window.print !== 'function'){
+    var isEn2 = (typeof LANG !== 'undefined' && LANG === 'en');
+    alert(isEn2
+      ? 'Your browser doesn\'t support printing to PDF. Please try again from Safari or Chrome.'
+      : 'Tu navegador no permite imprimir a PDF. Inténtalo de nuevo desde Safari o Chrome.');
+    return;
+  }
+
+  // Pequeño margen para asegurar que el DOM (fecha de portada, etc.) esté listo antes de imprimir
+  setTimeout(function(){
+    try { window.print(); }
+    catch(e){
+      var isEn3 = (typeof LANG !== 'undefined' && LANG === 'en');
+      alert(isEn3
+        ? 'Something went wrong opening the print dialog. Please try again, or use a different browser.'
+        : 'Ha ocurrido un problema al abrir el diálogo de impresión. Inténtalo de nuevo, o prueba con otro navegador.');
+    }
+  }, 50);
+}
+
 // ==================== Cambio de idioma ====================
 function setLang(lang){
   DIMS = (lang === 'en') ? DIMS_EN : DIMS_ES;
@@ -3288,7 +3327,7 @@ function setLang(lang){
   }
 }
 
-window.Diag = { startQuiz: startQuiz, prevDim: prevDim, nextDim: nextDim, restart: restart, setAnswer: setAnswer, setLang: setLang };
+window.Diag = { startQuiz: startQuiz, prevDim: prevDim, nextDim: nextDim, restart: restart, setAnswer: setAnswer, setLang: setLang, downloadPdf: downloadPdf };
 })();
 </script>
 </body>
