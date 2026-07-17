@@ -220,6 +220,7 @@ footer{background:#295a49;padding:64px 0 32px}
 .sig-back-row{margin-bottom:32px}
 .sig-label{margin-bottom:18px}
 .sig-h{font-family:var(--f-s);font-size:clamp(2.4rem,5vw,4rem);font-weight:400;color:var(--ink);line-height:1.08;margin-bottom:16px}
+.sig-h span{color:var(--ink)}
 .sig-h em{font-style:italic;color:var(--petrol)}
 .sig-desc{font-size:.95rem;color:var(--muted);max-width:500px;line-height:1.72;margin-bottom:20px}
 .sig-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
@@ -234,24 +235,30 @@ footer{background:#295a49;padding:64px 0 32px}
 .ss-form button{flex-shrink:0;background:var(--ink);color:#fff;border:none;border-radius:100px;padding:10px 20px;font-family:var(--f-g);font-size:.78rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
 .ss-form button:hover{background:#1c3e33}
 .ss-form-note{font-size:.68rem;color:var(--muted);opacity:.6}
-.sig-list{padding:0}
-.sig-item{padding:32px 0;border-bottom:1px solid var(--border);cursor:pointer;display:block;transition:background .1s,margin .12s,padding .12s;text-decoration:none;color:inherit}
-.sig-item:first-child{border-top:1px solid var(--border)}
+.sig-list{padding:0;display:grid;gap:20px}
+.sig-item{padding:28px 32px;border:1px solid rgba(41,90,73,.13);border-radius:28px;background:#fff;cursor:pointer;display:block;text-decoration:none;color:inherit;box-shadow:0 4px 22px rgba(41,90,73,.07);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.sig-item:first-child{border-top:1px solid rgba(41,90,73,.12)}
 
 .sig-item-inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start}
-.sig-item-cat{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:10px}
-.sig-item-title{font-family:var(--f-s);font-size:clamp(1.15rem,2vw,1.45rem);font-weight:400;color:var(--ink);line-height:1.3}
+.sig-item-cat{font-size:.72rem;font-weight:600;letter-spacing:0;color:#5d6f67;margin-bottom:10px}
+.sig-item-title{font-family:var(--f-s);font-size:clamp(1.15rem,2vw,1.45rem);font-weight:500;color:var(--ink);line-height:1.3}
+.sig-takeaways-wrap{margin:18px 0 0 18px;padding-left:18px;border-left:1px solid rgba(41,90,73,.14);max-width:720px}
+.sig-takeaways-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:8px}
+.sig-takeaways{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.sig-takeaways li{font-size:.82rem;line-height:1.55;color:var(--muted);padding-left:18px;position:relative}
+.sig-takeaways li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--petrol);opacity:.6}
+.sig-item-cta{display:inline-flex;margin-top:18px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--petrol);border-bottom:1px solid rgba(41,90,73,.25);padding-bottom:2px}
 .sig-item-meta{text-align:right;font-size:.72rem;color:var(--muted);line-height:1.6;white-space:nowrap;padding-top:4px}
 
 /* ARTICLE VIEW inside signals */
 .art-view{display:none;padding:80px 0 120px}
 .art-view.visible{display:block}
 .art-back-row{margin-bottom:48px}
-.art-header{padding-bottom:48px;border-bottom:1px solid var(--border);max-width:720px}
+.art-header{padding-bottom:48px;border-bottom:1px solid var(--border);max-width:860px}
 .art-cat{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:16px;display:block}
 .art-h{font-family:var(--f-s);font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:14px}
 .art-meta{font-size:.78rem;color:var(--muted)}
-.art-body{padding:52px 0;max-width:680px}
+.art-body{padding:52px 0;max-width:860px}
 .art-body p{font-size:.98rem;color:var(--ink);line-height:1.88;margin-bottom:28px}
 .art-body p:first-child{font-size:1.06rem;font-weight:300;color:var(--muted)}
 
@@ -291,6 +298,16 @@ footer{background:#295a49;padding:64px 0 32px}
 
 .art-body a{color:var(--petrol)}
 .art-body strong{color:var(--ink);font-weight:600}
+.art-close{max-width:860px;margin:72px 0 0;padding:40px 0 0;border-top:1px solid var(--border)}
+.art-close-signature{font-family:var(--f-s);font-size:1.12rem;font-style:italic;color:var(--ink);line-height:1.55;margin-bottom:34px}
+.art-close-card{background:rgba(41,90,73,.045);border:1px solid rgba(41,90,73,.12);border-radius:8px;padding:32px 34px 34px}
+.art-close-title{font-family:var(--f-s);font-size:1.45rem;font-weight:400;color:var(--ink);line-height:1.25;margin-bottom:10px}
+.art-close-text{font-size:.94rem;color:var(--muted);line-height:1.75;max-width:620px;margin-bottom:22px}
+.art-close-form{display:flex;width:100%;max-width:430px;background:var(--surf);border:1px solid var(--bmd);border-radius:100px;padding:5px 5px 5px 18px;box-shadow:0 2px 16px rgba(41,90,73,.07)}
+.art-close-form input{flex:1;border:none;outline:none;background:transparent;font-family:var(--f-g);font-size:.85rem;color:var(--ink);min-width:0}
+.art-close-form input::placeholder{color:rgba(41,90,73,.3)}
+.art-close-form button{flex-shrink:0;background:var(--ink);color:#fff;border:none;border-radius:100px;padding:10px 18px;font-family:var(--f-g);font-size:.78rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
+.art-close-form button:hover{background:#1c3e33}
 
 /* INSIGHTS PAGE */
 .pg-insights{padding-top:62px}
@@ -439,7 +456,8 @@ footer{background:#295a49;padding:64px 0 32px}
   /* signals page */
   .pg-signals{overflow-x:hidden}
   .sig-h{font-size:clamp(2rem,8vw,3rem)}
-  .sig-archive{padding:0 16px}
+  .sig-archive{padding:0}
+  .sig-item{padding:24px 18px}
   .sig-item-inner{grid-template-columns:1fr}.sig-item-meta{display:none}
   .ss-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px}
   .ss-form input{font-size:16px}
@@ -453,6 +471,13 @@ footer{background:#295a49;padding:64px 0 32px}
   .art-body table{display:block;overflow-x:auto;white-space:nowrap}
   .art-body h3{font-size:.65rem;margin:32px 0 14px}
   .art-body h4{font-size:1.1rem;margin:28px 0 6px}
+  .art-close{max-width:100%;margin-top:48px;padding-top:30px}
+  .art-close-signature{font-size:1.02rem;margin-bottom:26px}
+  .art-close-card{padding:24px 18px;border-radius:8px}
+  .art-close-title{font-size:1.25rem}
+  .art-close-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px;max-width:100%}
+  .art-close-form input{font-size:16px}
+  .art-close-form button{border-radius:8px;padding:12px;width:100%}
 
   /* insights page */
   .pg-insights{overflow-x:hidden}
@@ -568,13 +593,13 @@ footer{background:#295a49;padding:64px 0 32px}
 
 /* signals archive card */
 .sig-archive{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:8px;
-  margin:48px 0 64px;
-  padding:0 40px;
-  overflow:hidden;
-  box-shadow:0 2px 24px rgba(41,90,73,.05);
+  background:transparent;
+  border:0;
+  border-radius:0;
+  margin:24px 0 64px;
+  padding:0;
+  overflow:visible;
+  box-shadow:none;
 }
 .sig-archive-header{
   display:flex;
@@ -596,24 +621,24 @@ footer{background:#295a49;padding:64px 0 32px}
 }
 /* adjust item hover to match card padding */
 .sig-archive .sig-item{
-  border-bottom:1px solid rgba(41,90,73,.06);
+  border-bottom:1px solid rgba(41,90,73,.12);
 }
 .sig-archive .sig-item:first-child{
-  border-top:none;
+  border-top:1px solid rgba(41,90,73,.12);
 }
 .sig-archive .sig-item:last-child{
-  border-bottom:none;
+  border-bottom:1px solid rgba(41,90,73,.12);
 }
 
 
-/* sig-item rich hover */
-.sig-item{transition:background .18s ease}
 .sig-item-title{transition:transform .22s ease}
 .sig-item-meta{transition:transform .22s ease}
-.sig-archive .sig-item:hover{background:rgba(41,90,73,.06)}
-.sig-archive .sig-item:hover .sig-item-title{transform:translateX(18px)}
+.sig-item-cta{transition:color .18s,border-color .18s,transform .22s ease}
+.sig-archive .sig-item:hover{background:#fff;border-color:rgba(41,90,73,.24);box-shadow:0 12px 38px rgba(41,90,73,.14);transform:translateY(-2px)}
+.sig-archive .sig-item:hover .sig-item-title{transform:translateX(10px)}
 .sig-archive .sig-item:hover .sig-item-meta{transform:translateX(-14px)}
-.sig-archive .sig-item:hover .sig-item-cat{opacity:.8}
+.sig-archive .sig-item:hover .sig-item-cta{color:#173d32;border-bottom-color:#173d32;transform:translateX(6px)}
+.sig-archive .sig-item:hover .sig-item-cat{opacity:.95}
 
 /* hero-card hover lift */
 .hero-card:hover{transform:translateY(-4px);box-shadow:0 12px 48px rgba(41,90,73,.14)}
@@ -660,12 +685,12 @@ footer{background:#295a49;padding:64px 0 32px}
 #diag-tool * {margin:0;padding:0;box-sizing:border-box}
 #diag-tool {
     font-family:"Instrument Sans",-apple-system,Segoe UI,Roboto,sans-serif;
-    background:var(--bg);
+    background:var(--fondo);
     color:var(--antracita);
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-#diag-tool .wrap {max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+#diag-tool .wrap {max-width:880px;margin:0 auto;padding:0 24px}
 #diag-tool .screen {display:none;animation:diag-fadeIn .35s ease}
 #diag-tool .screen.active {display:block}
 @keyframes diag-fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -673,13 +698,13 @@ footer{background:#295a49;padding:64px 0 32px}
 #diag-tool .screen {animation:none}
 #diag-tool * {transition:none!important;animation:none!important}
 }
-#diag-tool .hero {display:block;place-items:unset;min-height:auto;max-width:none;padding:64px 0 40px;position:relative;background:transparent;text-align:center}
+#diag-tool .hero {padding:64px 0 40px;position:relative}
 #diag-tool .eyebrow {
     display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;
     text-transform:uppercase;color:var(--verde-osc);
     border:1px solid var(--verde);border-radius:100px;padding:6px 14px;margin-bottom:26px;
   }
-#diag-tool h1 {font-size:clamp(30px,5.4vw,50px);font-weight:700;line-height:1.08;letter-spacing:-.015em;max-width:15ch;margin:0 auto}
+#diag-tool h1 {font-size:clamp(30px,5.4vw,50px);font-weight:700;line-height:1.08;letter-spacing:-.015em;max-width:15ch}
 #diag-tool h1 em {font-style:normal;color:var(--verde)}
 #diag-tool .hero p.lead {font-size:17.5px;color:var(--gris);max-width:56ch;margin:22px 0 8px}
 #diag-tool .hero-meta {display:flex;gap:26px;flex-wrap:wrap;margin:26px 0 34px;font-size:14px;color:var(--gris)}
@@ -687,21 +712,11 @@ footer{background:#295a49;padding:64px 0 32px}
 #diag-tool .diag-pdf-label{font-family:var(--f-s);font-size:2rem;font-weight:400;color:var(--verde-osc);margin:22px 0 6px;line-height:1.2}
 #diag-tool .diag-pdf-sub{font-size:16px;color:var(--gris);margin-bottom:22px}
 #diag-tool .diag-pdf-includes-title{font-weight:600;font-size:14.5px;color:var(--antracita);margin-bottom:10px}
-#diag-tool .diag-pdf-list{list-style:none;margin:0 auto 22px;display:inline-block;text-align:left}
+#diag-tool .diag-pdf-list{list-style:none;margin-bottom:22px}
 #diag-tool .diag-pdf-list li{font-size:15px;color:var(--antracita);margin-bottom:8px;line-height:1.4}
 #diag-tool .diag-pdf-anon{font-size:13.5px;color:var(--gris);margin-bottom:30px}
-#diag-tool .dims-intro {
-    font-size:14.5px;color:var(--gris);line-height:1.6;max-width:62ch;margin:0 auto 24px;
-  }
-#diag-tool .dims-block, #diag-tool .dims-block * {text-align:left}
-#diag-tool .dims-block {margin-bottom:20px}
-#diag-tool .dims-block:last-of-type {margin-bottom:38px}
-#diag-tool .dims-group-head {display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-#diag-tool .dims-group-title {font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verde-osc)}
-#diag-tool .dims-group-head.res .dims-group-title {color:var(--verde)}
-#diag-tool .dims-group-sub {font-size:12.5px;color:var(--gris)}
 #diag-tool .dims-grid {
-    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 38px;
   }
 @media(max-width:720px){
 #diag-tool .dims-grid {grid-template-columns:repeat(2,1fr)}
@@ -958,7 +973,7 @@ footer{background:#295a49;padding:64px 0 32px}
     </div>
     <p class="hero-tagline" data-i18n="hero_tagline">LA OFICINA ES UNA DECISI&Oacute;N DE NEGOCIO. TR&Aacute;TALA COMO TAL.</p>
     <h1 class="hero-h"><span data-i18n="hero_h1_a">Recibe una se&ntilde;al a la semana</span><br><span class="hero-accent" data-i18n="hero_h1_b">sobre el futuro del workplace</span></h1>
-    <p class="hero-sub" data-i18n="hero_sub">Criterio estrat&eacute;gico sobre sostenibilidad, tecnolog&iacute;a y valor del activo, directo a tu bandeja de entrada cada ma&ntilde;ana.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Criterio estrat&eacute;gico sobre sostenibilidad, tecnolog&iacute;a y valor del activo, directo a tu bandeja de entrada cada semana.</p>
     <div class="hero-card">
       <p class="hero-card-msg"><span data-i18n="hero_card_msg">LO QUE OTROS TARDAN SEMANAS EN ENTENDER.</span><br><strong class="hero-card-accent" data-i18n="hero_card_accent">T&Uacute; LO LEES HOY.</strong></p>
       <div class="hero-card-form">
@@ -1068,12 +1083,12 @@ footer{background:#295a49;padding:64px 0 32px}
       <div class="gateway-inner">
         <div class="gateway-tag" data-i18n="gw_sig_tag">Newsletter semanal</div>
         <h2 class="gateway-h">Signals from the Office</h2>
-        <p class="gateway-body" data-i18n="gw_sig_body">Cada ma&ntilde;ana, las se&ntilde;ales de actualidad que importan en el workplace.</p>
+        <p class="gateway-body" data-i18n="gw_sig_body">Cada viernes, las se&ntilde;ales de actualidad que importan en el workplace.</p>
         <div class="gateway-meta">
           <span class="gateway-pill" data-i18n="pill_sig1">AN&Aacute;LISIS BREVE</span>
           <span class="gateway-pill" data-i18n="pill_sig2">SE&Ntilde;ALES EMERGENTES</span>
           <span class="gateway-pill" data-i18n="pill_sig3">DATOS</span>
-          <span class="gateway-pill" data-i18n="pill_sig4">SEMANAL</span>
+          <span class="gateway-pill" data-i18n="pill_sig4">DIARIO</span>
         </div>
         <div class="gateway-spacer"></div>
         <button class="gateway-cta-btn" onclick="event.stopPropagation();showPage('page-signals')" data-i18n="gw_sig_cta">Explorar se&ntilde;ales &#x2192;</button>
@@ -1133,13 +1148,13 @@ footer{background:#295a49;padding:64px 0 32px}
       <div class="sig-header-grid">
         <div>
           <div class="label sig-label">Signals from the Office</div>
-          <h1 class="sig-h"><span data-i18n="sig_h1_a">Recibe una se&ntilde;al a la semana</span><br><em data-i18n="sig_h1_b">para anticiparte al cambio</em></h1>
+          <h1 class="sig-h"><span data-i18n="sig_h1_a">Una newsletter cada viernes.</span><br><em data-i18n="sig_h1_b">Para entender hacia d&oacute;nde va la oficina.</em></h1>
           <p class="sig-desc" data-i18n="sig_desc1">Cada viernes recibes un análisis de las señales que están transformando el futuro de la oficina para ayudarte a entender qué cambia y por qué importa.</p>
 
           <p class="sig-byline"><span data-i18n="sig_por">Por</span> <button onclick="window._nosotrasTarget='sq';showPage('page-nosotras')"" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Susana Quint&aacute;s</strong></button> y <button onclick="window._nosotrasTarget='jg';showPage('page-nosotras')" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Joaquina Garrido-Arroquia</strong></button></p>
         </div>
         <div class="sig-sub-box">
-          <span class="sig-sub-label" data-i18n="sig_sub_label">Suscr&iacute;bete para recibirlas cada ma&ntilde;ana</span>
+          <span class="sig-sub-label" data-i18n="sig_sub_label">Suscr&iacute;bete para recibirlas cada semana</span>
           <div class="ss-form">
             <input type="email" placeholder="tu@email.com" id="sigEmail" data-i18n-ph="footer_email_ph">
             <button onclick="subForm('sigEmail')" data-i18n="hero_subscribe">Suscribirme &#x2192;</button>
@@ -1172,6 +1187,17 @@ footer{background:#295a49;padding:64px 0 32px}
       <p class="art-meta" id="art-meta"></p>
     </div>
     <div class="art-body" id="art-body"></div>
+    <div class="art-close">
+      <p class="art-close-signature" data-i18n="art_close_signature">El equipo de Work &amp; Place Institute</p>
+      <div class="art-close-card">
+        <div class="art-close-title" data-i18n="art_close_title">&iquest;Quieres recibir la pr&oacute;xima edici&oacute;n en tu bandeja de entrada?</div>
+        <p class="art-close-text" data-i18n="art_close_text">Cada viernes analizamos las se&ntilde;ales que est&aacute;n redefiniendo el futuro de la oficina.</p>
+        <div class="art-close-form">
+          <input type="email" placeholder="tu@email.com" id="artEmail" data-i18n-ph="footer_email_ph">
+          <button onclick="subForm('artEmail')" data-i18n="art_close_btn">Suscribirse &#x2192;</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div><!-- /page-signals -->
 
@@ -1437,32 +1463,15 @@ footer{background:#295a49;padding:64px 0 32px}
         <li>✓ Recomendaciones prácticas para empezar a actuar</li>
       </ul>
       <p class="diag-pdf-anon" data-i18n="diag_pdf_anon">🔒 100% anónimo · Sin registro</p>
-      <p class="dims-intro" data-i18n="diag_dims_intro">El diagnóstico evalúa tu oficina desde dos perspectivas complementarias: una base sostenible para el rendimiento diario y una frontera resiliente para afrontar los retos del futuro.</p>
-      <div data-i18n-html="diag_dims_grid">
-        <div class="dims-block">
-          <div class="dims-group-head">
-            <span class="dims-group-title">Base sostenible</span>
-            <span class="dims-group-sub">Los pilares del rendimiento diario.</span>
-          </div>
-          <div class="dims-grid">
-            <div class="dim-chip">Eficiencia y energía</div>
-            <div class="dim-chip">Salud y bienestar</div>
-            <div class="dim-chip">Circularidad y recursos</div>
-            <div class="dim-chip">Datos, tecnología e IA</div>
-          </div>
-        </div>
-        <div class="dims-block">
-          <div class="dims-group-head res">
-            <span class="dims-group-title">Frontera resiliente</span>
-            <span class="dims-group-sub">Preparación frente a riesgos y cambio.</span>
-          </div>
-          <div class="dims-grid">
-            <div class="dim-chip res">Resiliencia climática</div>
-            <div class="dim-chip res">Ciberseguridad del edificio</div>
-            <div class="dim-chip res">Continuidad operativa</div>
-            <div class="dim-chip res">Gobierno y economía</div>
-          </div>
-        </div>
+      <div class="dims-grid" aria-hidden="true" data-i18n-html="diag_dims_grid">
+        <div class="dim-chip"><small>Base sostenible</small>Eficiencia y energía</div>
+        <div class="dim-chip"><small>Base sostenible</small>Salud y bienestar</div>
+        <div class="dim-chip"><small>Base sostenible</small>Circularidad y recursos</div>
+        <div class="dim-chip"><small>Base sostenible</small>Datos, tecnología e IA</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Resiliencia climática</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Ciberseguridad del edificio</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Continuidad operativa</div>
+        <div class="dim-chip res"><small>Frontera resiliente</small>Gobierno y economía</div>
       </div>
       <button class="btn" onclick="Diag.startQuiz()"><span data-i18n="diag_cta_btn">Comenzar mi diagnóstico</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1619,7 +1628,7 @@ footer{background:#295a49;padding:64px 0 32px}
       <!-- Col 3: Newsletter -->
       <div class="f-newsletter">
         <h4 data-i18n="f_nl_h">Newsletter</h4>
-        <p class="f-nl-label" data-i18n="f_nl_label">Recibe una se&ntilde;al a la semana para anticiparte al cambio</p>
+        <p class="f-nl-label" data-i18n="f_nl_label">Recibe una se&ntilde;al a la semana sobre lo que importa</p>
         <div class="f-nl-form">
           <input type="email" placeholder="tu@email.com" id="footEmail" class="f-nl-input" placeholder="tu@email.com" data-i18n-ph="footer_email_ph">
           <button onclick="subForm('footEmail')" class="f-nl-btn" data-i18n="f_nl_btn">Suscribirme &#x2192;</button>
@@ -1669,8 +1678,7 @@ var T = {
     diag_pdf_includes_title: 'Tu informe incluye:',
     diag_pdf_list: '<li>✓ Evaluación completa en 8 dimensiones clave</li><li>✓ Fortalezas y oportunidades de mejora</li><li>✓ Recomendaciones prácticas para empezar a actuar</li>',
     diag_pdf_anon: '🔒 100% anónimo · Sin registro',
-    diag_dims_intro: 'El diagnóstico evalúa tu oficina desde dos perspectivas complementarias: una base sostenible para el rendimiento diario y una frontera resiliente para afrontar los retos del futuro.',
-    diag_dims_grid: '<div class="dims-block"><div class="dims-group-head"><span class="dims-group-title">Base sostenible</span><span class="dims-group-sub">Los pilares del rendimiento diario.</span></div><div class="dims-grid"><div class="dim-chip">Eficiencia y energía</div><div class="dim-chip">Salud y bienestar</div><div class="dim-chip">Circularidad y recursos</div><div class="dim-chip">Datos, tecnología e IA</div></div></div><div class="dims-block"><div class="dims-group-head res"><span class="dims-group-title">Frontera resiliente</span><span class="dims-group-sub">Preparación frente a riesgos y cambio.</span></div><div class="dims-grid"><div class="dim-chip res">Resiliencia climática</div><div class="dim-chip res">Ciberseguridad del edificio</div><div class="dim-chip res">Continuidad operativa</div><div class="dim-chip res">Gobierno y economía</div></div></div>',
+    diag_dims_grid: '<div class="dim-chip"><small>Base sostenible</small>Eficiencia y energía</div><div class="dim-chip"><small>Base sostenible</small>Salud y bienestar</div><div class="dim-chip"><small>Base sostenible</small>Circularidad y recursos</div><div class="dim-chip"><small>Base sostenible</small>Datos, tecnología e IA</div><div class="dim-chip res"><small>Frontera resiliente</small>Resiliencia climática</div><div class="dim-chip res"><small>Frontera resiliente</small>Ciberseguridad del edificio</div><div class="dim-chip res"><small>Frontera resiliente</small>Continuidad operativa</div><div class="dim-chip res"><small>Frontera resiliente</small>Gobierno y economía</div>',
     diag_cta_btn: 'Comenzar mi diagnóstico',
 
     // Diagnóstico — cuestionario
@@ -1714,7 +1722,7 @@ var T = {
     hero_tagline: 'LA OFICINA ES UNA DECISIÓN DE NEGOCIO. TRÁTALA COMO TAL.',
     hero_h1_a: 'Recibe una señal a la semana',
     hero_h1_b: 'sobre el futuro del workplace',
-    hero_sub: 'Criterio estratégico sobre sostenibilidad, tecnología y valor del activo, directo a tu bandeja de entrada cada mañana.',
+    hero_sub: 'Criterio estratégico sobre sostenibilidad, tecnología y valor del activo, directo a tu bandeja de entrada cada semana.',
     hero_card_msg: 'LO QUE OTROS TARDAN SEMANAS EN ENTENDER.',
     hero_card_accent: 'TÚ LO LEES HOY.',
     hero_subscribe: 'Suscribirme →',
@@ -1736,11 +1744,11 @@ var T = {
     wi_cov5: 'Experiencia del empleado', wi_cov6: 'Future of Work',
 
     // Gateway
-    gw_quote: '"La inteligencia sobre el workplace que antes tardaba semanas en llegar. Ahora, cada mañana."',
+    gw_quote: '"La inteligencia sobre el workplace que antes tardaba semanas en llegar. Ahora, cada viernes."',
     gw_title_a: 'Dos formatos.',
     gw_title_b: 'Una misma claridad.',
     gw_sig_tag: 'Newsletter semanal',
-    gw_sig_body: 'Cada mañana, las señales de actualidad que importan en el workplace.',
+    gw_sig_body: 'Cada viernes, las señales de actualidad que importan en el workplace.',
     gw_sig_cta: 'Explorar señales →',
     gw_ins_tag: 'Pensamiento aplicado',
     gw_ins_body: 'Pensamiento de fondo para ir más allá del ciclo de noticias.',
@@ -1774,7 +1782,7 @@ var T = {
     f_por: 'Por',
     f_nav_h: 'Navegación',
     f_nl_h: 'Newsletter',
-    f_nl_label: 'Recibe una señal a la semana para anticiparte al cambio',
+    f_nl_label: 'Recibe una señal a la semana sobre lo que importa',
     f_nl_btn: 'Suscribirme →',
     f_copy: '© 2025 Work&Place Institute.',
     f_tag: 'Inteligencia estratégica sobre el futuro de la oficina',
@@ -1782,12 +1790,16 @@ var T = {
 
     // Signals page
     sig_label: 'Signals from the Office',
-    sig_h1_a: 'Recibe una señal a la semana',
-    sig_h1_b: 'para anticiparte al cambio',
+    sig_h1_a: 'Una newsletter cada viernes.',
+    sig_h1_b: 'Para entender hacia dónde va la oficina.',
     sig_desc1: 'Cada viernes recibes un análisis de las señales que están transformando el futuro de la oficina para ayudarte a entender qué cambia y por qué importa.',
-    sig_sub_label: 'Suscríbete para recibirlas cada mañana',
+    sig_sub_label: 'Suscríbete para recibirlas cada semana',
     sig_archive_label: 'Newsletter anteriores',
     sig_por: 'Por',
+    art_close_signature: 'El equipo de Work & Place Institute',
+    art_close_title: '¿Quieres recibir la próxima edición en tu bandeja de entrada?',
+    art_close_text: 'Cada viernes analizamos las señales que están redefiniendo el futuro de la oficina.',
+    art_close_btn: 'Suscribirse →',
 
     // Insights page
     ins_label: 'Insights',
@@ -1824,7 +1836,7 @@ var T = {
     acc_pub: 'Enfoque y publicaciones',
 
     // Pills / tags (gateway)
-    pill_sig1: 'ANÁLISIS BREVE', pill_sig2: 'SEÑALES EMERGENTES', pill_sig3: 'DATOS', pill_sig4: 'SEMANAL',
+    pill_sig1: 'ANÁLISIS BREVE', pill_sig2: 'SEÑALES EMERGENTES', pill_sig3: 'DATOS', pill_sig4: 'DIARIO',
     pill_ins1: 'MANIFIESTOS', pill_ins2: 'FRAMEWORKS', pill_ins3: 'PLAYBOOKS', pill_ins4: 'INFORMES',
 
     // Chips
@@ -1946,8 +1958,7 @@ var T = {
     diag_pdf_includes_title: 'Your report includes:',
     diag_pdf_list: '<li>✓ Full assessment across 8 key dimensions</li><li>✓ Strengths and opportunities for improvement</li><li>✓ Practical recommendations to start acting</li>',
     diag_pdf_anon: '🔒 100% anonymous · No sign-up',
-    diag_dims_intro: 'The diagnostic evaluates your office from two complementary perspectives: a sustainable base for day-to-day performance and a resilient frontier to face the challenges ahead.',
-    diag_dims_grid: '<div class="dims-block"><div class="dims-group-head"><span class="dims-group-title">Sustainable base</span><span class="dims-group-sub">The pillars of day-to-day performance.</span></div><div class="dims-grid"><div class="dim-chip">Energy efficiency</div><div class="dim-chip">Health &amp; wellbeing</div><div class="dim-chip">Circularity &amp; resources</div><div class="dim-chip">Data, technology &amp; AI</div></div></div><div class="dims-block"><div class="dims-group-head res"><span class="dims-group-title">Resilient frontier</span><span class="dims-group-sub">Preparedness for risk and change.</span></div><div class="dims-grid"><div class="dim-chip res">Climate resilience</div><div class="dim-chip res">Building cybersecurity</div><div class="dim-chip res">Operational continuity</div><div class="dim-chip res">Governance &amp; economics</div></div></div>',
+    diag_dims_grid: '<div class="dim-chip"><small>Sustainable base</small>Energy efficiency</div><div class="dim-chip"><small>Sustainable base</small>Health &amp; wellbeing</div><div class="dim-chip"><small>Sustainable base</small>Circularity &amp; resources</div><div class="dim-chip"><small>Sustainable base</small>Data, technology &amp; AI</div><div class="dim-chip res"><small>Resilient frontier</small>Climate resilience</div><div class="dim-chip res"><small>Resilient frontier</small>Building cybersecurity</div><div class="dim-chip res"><small>Resilient frontier</small>Operational continuity</div><div class="dim-chip res"><small>Resilient frontier</small>Governance &amp; economics</div>',
     diag_cta_btn: 'Start my diagnostic',
 
     // Diagnostic — quiz
@@ -1991,7 +2002,7 @@ var T = {
     hero_tagline: 'THE OFFICE IS A BUSINESS DECISION. TREAT IT AS ONE.',
     hero_h1_a: 'Receive one signal a week',
     hero_h1_b: 'on the future of workplace',
-    hero_sub: 'Strategic insight on sustainability, technology and asset value, straight to your inbox every morning.',
+    hero_sub: 'Strategic insight on sustainability, technology and asset value, straight to your inbox every week.',
     hero_card_msg: 'WHAT OTHERS TAKE WEEKS TO UNDERSTAND.',
     hero_card_accent: 'YOU READ IT TODAY.',
     hero_subscribe: 'Subscribe →',
@@ -2011,11 +2022,11 @@ var T = {
     wi_cov5: 'Employee experience', wi_cov6: 'Future of Work',
 
     // Gateway
-    gw_quote: '"The workplace intelligence that used to take weeks to arrive. Now, every morning."',
+    gw_quote: '"The workplace intelligence that used to take weeks to arrive. Now, every Friday."',
     gw_title_a: 'Two formats.',
     gw_title_b: 'One clarity.',
     gw_sig_tag: 'Weekly newsletter',
-    gw_sig_body: 'Every morning, the signals that matter in workplace.',
+    gw_sig_body: 'Every Friday, the signals that matter in workplace.',
     gw_sig_cta: 'Explore signals →',
     gw_ins_tag: 'Applied thinking',
     gw_ins_body: 'In-depth thinking to go beyond the news cycle.',
@@ -2057,12 +2068,16 @@ var T = {
 
     // Signals page
     sig_label: 'Signals from the Office',
-    sig_h1_a: 'One signal a week',
-    sig_h1_b: 'on what matters',
+    sig_h1_a: 'One newsletter every Friday.',
+    sig_h1_b: 'To understand where the office is going.',
     sig_desc1: 'Every Friday you get an analysis of the signals shaping the future of the office, to help you understand what\'s changing and why it matters.',
-    sig_sub_label: 'Subscribe to receive them every morning',
+    sig_sub_label: 'Subscribe to receive them every week',
     sig_archive_label: 'Previous newsletters',
     sig_por: 'By',
+    art_close_signature: 'The Work & Place Institute team',
+    art_close_title: 'Want to receive the next edition in your inbox?',
+    art_close_text: 'Every Friday we analyse the signals redefining the future of the office.',
+    art_close_btn: 'Subscribe →',
 
     // Insights page
     ins_label: 'Insights',
@@ -2099,7 +2114,7 @@ var T = {
     acc_pub: 'Approach & publications',
 
     // Pills / tags
-    pill_sig1: 'BRIEF ANALYSIS', pill_sig2: 'EMERGING SIGNALS', pill_sig3: 'DATA', pill_sig4: 'WEEKLY',
+    pill_sig1: 'BRIEF ANALYSIS', pill_sig2: 'EMERGING SIGNALS', pill_sig3: 'DATA', pill_sig4: 'DAILY',
     pill_ins1: 'MANIFESTOS', pill_ins2: 'FRAMEWORKS', pill_ins3: 'PLAYBOOKS', pill_ins4: 'REPORTS',
 
     // Chips
@@ -2286,13 +2301,12 @@ function switchLang(lang) {
   // If a signals article is currently open, re-render it in new lang
   var sigArt = document.getElementById('sig-art');
   if (sigArt && sigArt.style.display === 'block' && window._currentArt !== undefined) {
-    var s2 = SIGNALS_DATA[window._currentArt];
+    var s2 = VISIBLE_SIGNALS_DATA[window._currentArt];
     if (s2) {
-      var t2 = s2[lang] || s2.es || s2.en || {};
-      var readLabel2 = lang === 'en' ? 'min read' : 'min lectura';
-      document.getElementById('art-cat').textContent = t2.cat || '';
+      var t2 = signalContent(s2, lang);
+      document.getElementById('art-cat').textContent = signalIssueLabel(window._currentArt);
       document.getElementById('art-title').textContent = t2.title || '';
-      document.getElementById('art-meta').textContent = relativeDate(s2.date, lang) + ' · ' + (s2.readTime||3) + ' ' + readLabel2;
+      document.getElementById('art-meta').textContent = signalMeta(s2, lang);
       document.getElementById('art-body').innerHTML = t2.body || '';
     }
   }
@@ -2378,14 +2392,13 @@ window.addEventListener('popstate', function(e) {
     showPage('page-signals', false);
     // Restore article view directly without pushing new history
     var lang0 = (typeof LANG !== 'undefined' && LANG === 'en') ? 'en' : 'es';
-    var s0 = SIGNALS_DATA[state.artIdx];
+    var s0 = VISIBLE_SIGNALS_DATA[state.artIdx];
     if (s0) {
-      var t0 = s0[lang0] || s0.es || s0.en || {};
-      var readLabel0 = lang0 === 'en' ? 'min read' : 'min lectura';
+      var t0 = signalContent(s0, lang0);
       window._currentArt = state.artIdx;
-      document.getElementById('art-cat').textContent = t0.cat || '';
+      document.getElementById('art-cat').textContent = signalIssueLabel(state.artIdx);
       document.getElementById('art-title').textContent = t0.title || '';
-      document.getElementById('art-meta').textContent = relativeDate(s0.date, lang0) + ' · ' + (s0.readTime||3) + ' ' + readLabel0;
+      document.getElementById('art-meta').textContent = signalMeta(s0, lang0);
       document.getElementById('art-body').innerHTML = t0.body || '';
       document.getElementById('sig-list').style.display = 'none';
       var v = document.getElementById('sig-art');
@@ -2452,6 +2465,7 @@ function scrollToSection(id) {
 //     }, ...
 // ]}
 var SIGNALS_DATA = [];
+var VISIBLE_SIGNALS_DATA = [];
 
 // Fallback mínimo por si signals.json no carga (red, archivo local, error 404)
 var SIGNALS_FALLBACK = [
@@ -2461,7 +2475,9 @@ var SIGNALS_FALLBACK = [
 ];
 
 function relativeDate(dateStr, lang){
+  if (!dateStr) return lang === 'en' ? 'Previous issue' : 'Newsletter anterior';
   var d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return lang === 'en' ? 'Previous issue' : 'Newsletter anterior';
   var today = new Date();
   today.setHours(0,0,0,0);
   var diffDays = Math.round((today - d) / 86400000);
@@ -2475,18 +2491,108 @@ function relativeDate(dateStr, lang){
   return 'Hace ' + diffDays + ' días';
 }
 
+function publishedDate(dateStr, lang){
+  if (!dateStr) return lang === 'en' ? 'Published' : 'Publicado';
+  var d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return lang === 'en' ? 'Published' : 'Publicado';
+  var locale = lang === 'en' ? 'en-GB' : 'es-ES';
+  var formatted = d.toLocaleDateString(locale, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  return (lang === 'en' ? 'Published ' : 'Publicado el ') + formatted;
+}
+
+function formattedDate(dateStr, lang){
+  if (!dateStr) return '';
+  var d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return '';
+  var locale = lang === 'en' ? 'en-GB' : 'es-ES';
+  return d.toLocaleDateString(locale, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+
+function signalMeta(signal, lang){
+  var readLabel = lang === 'en' ? 'min read' : 'min lectura';
+  return publishedDate(signalDate(signal), lang) + ' · ' + (signal.readTime || 3) + ' ' + readLabel;
+}
+
+function signalListMeta(signal, lang){
+  var readLabel = lang === 'en' ? 'min read' : 'min lectura';
+  return escapeHtml(formattedDate(signalDate(signal), lang)) + '<br>' + (signal.readTime || 3) + ' ' + readLabel;
+}
+
+function signalIssueLabel(index){
+  return 'Newsletter #' + (VISIBLE_SIGNALS_DATA.length - index);
+}
+
+function signalDate(signal) {
+  if (signal.date) return signal.date;
+  return /^\d{4}-\d{2}-\d{2}$/.test(signal.id || '') ? signal.id : '';
+}
+
 function loadSignals(){
   fetch('signals.json', {cache:'no-cache'})
     .then(function(r){ if(!r.ok) throw new Error('signals.json not found'); return r.json(); })
     .then(function(data){
       SIGNALS_DATA = (data && Array.isArray(data.signals)) ? data.signals.slice() : [];
       SIGNALS_DATA.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+      VISIBLE_SIGNALS_DATA = visibleSignals(SIGNALS_DATA);
       renderSignalsList();
     })
     .catch(function(){
       SIGNALS_DATA = SIGNALS_FALLBACK.slice();
+      VISIBLE_SIGNALS_DATA = visibleSignals(SIGNALS_DATA);
       renderSignalsList();
     });
+}
+
+function visibleSignals(items){
+  return (items || []).filter(function(s){
+    var title = (signalContent(s, 'es').title || signalContent(s, 'en').title || '').trim();
+    var body = (signalContent(s, 'es').body || signalContent(s, 'en').body || '').trim();
+    return title && body;
+  });
+}
+
+function signalContent(signal, lang) {
+  var primary = signal[lang] || {};
+  if (primary.title || primary.body || primary.cat) return primary;
+  if (lang === 'en' && (signal.title_en || signal.body_en || signal.cat_en)) {
+    return {
+      cat: signal.cat_en || signal.cat || '',
+      title: signal.title_en || signal.title || '',
+      body: signal.body_en || signal.body || '',
+      takeaways: signal.takeaways_en || signal.takeaways || []
+    };
+  }
+  return {
+    cat: signal.cat || '',
+    title: signal.title || '',
+    body: signal.body || '',
+    takeaways: signal.takeaways || []
+  };
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>"']/g, function(ch) {
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+  });
+}
+
+function stripHtml(value) {
+  return String(value || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function signalTakeaways(signal, lang) {
+  var t = signalContent(signal, lang);
+  var list = t.takeaways || signal.takeaways || [];
+  if (Array.isArray(list) && list.length) return list.slice(0, 3);
+  return stripHtml(t.body).split(/(?<=[.!?])\s+/).filter(Boolean).slice(0, 3);
 }
 
 function renderSignalsList(){
@@ -2494,21 +2600,28 @@ function renderSignalsList(){
   var container = document.getElementById('sig-list-items');
   if (!container) return;
 
-  if (!SIGNALS_DATA.length) {
+  if (!VISIBLE_SIGNALS_DATA.length) {
     container.innerHTML = '<p style="padding:24px 0;color:var(--muted);font-size:.9rem">' +
       (lang === 'en' ? 'No signals published yet.' : 'Todavía no hay señales publicadas.') + '</p>';
     return;
   }
 
-  var readLabel = lang === 'en' ? 'min read' : 'min';
+  var ctaLabel = lang === 'en' ? 'Keep reading' : 'Seguir leyendo';
+  var keypointsLabel = lang === 'en' ? 'Key takeaways' : '3 claves';
   var html = '';
-  SIGNALS_DATA.forEach(function(s, i){
-    var t = s[lang] || s.es || s.en || {};
-    var rel = relativeDate(s.date, lang);
+  VISIBLE_SIGNALS_DATA.forEach(function(s, i){
+    var t = signalContent(s, lang);
+    var meta = signalListMeta(s, lang);
+    var issueLabel = signalIssueLabel(i);
+    var takeaways = signalTakeaways(s, lang).map(function(item){
+      return '<li>' + escapeHtml(item) + '</li>';
+    }).join('');
     html += '<a class="sig-item" onclick="showArt(' + i + ');return false;" href="#">' +
-      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + (t.cat||'') + '</div>' +
-      '<div class="sig-item-title">' + (t.title||'') + '</div></div>' +
-      '<div class="sig-item-meta">' + rel + '<br>' + (s.readTime||3) + ' ' + readLabel + '</div></div>' +
+      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + escapeHtml(issueLabel) + '</div>' +
+      '<div class="sig-item-title">' + escapeHtml(t.title||'') + '</div>' +
+      (takeaways ? '<div class="sig-takeaways-wrap"><div class="sig-takeaways-label">' + keypointsLabel + '</div><ul class="sig-takeaways">' + takeaways + '</ul></div>' : '') +
+      '<span class="sig-item-cta">' + ctaLabel + ' &#x2192;</span></div>' +
+      '<div class="sig-item-meta">' + meta + '</div></div>' +
       '</a>';
   });
   container.innerHTML = html;
@@ -2517,13 +2630,12 @@ function renderSignalsList(){
 function showArt(i) {
   window._currentArt = i;
   var lang = (typeof LANG !== 'undefined' && LANG === 'en') ? 'en' : 'es';
-  var s = SIGNALS_DATA[i];
+  var s = VISIBLE_SIGNALS_DATA[i];
   if (!s) return;
-  var t = s[lang] || s.es || s.en || {};
-  var readLabel = lang === 'en' ? 'min read' : 'min lectura';
-  document.getElementById('art-cat').textContent = t.cat || '';
+  var t = signalContent(s, lang);
+  document.getElementById('art-cat').textContent = signalIssueLabel(i);
   document.getElementById('art-title').textContent = t.title || '';
-  document.getElementById('art-meta').textContent = relativeDate(s.date, lang) + ' · ' + (s.readTime||3) + ' ' + readLabel;
+  document.getElementById('art-meta').textContent = signalMeta(s, lang);
   document.getElementById('art-body').innerHTML = t.body || '';
   document.getElementById('sig-list').style.display = 'none';
   var v = document.getElementById('sig-art');
@@ -2606,7 +2718,7 @@ function subForm(id) {
   var b = i.nextElementSibling;
   if (!b) return;
   var o = b.textContent;
-  var source = id === 'heroEmail' ? 'hero' : (id === 'footEmail' ? 'footer' : 'newsletter');
+  var source = id === 'heroEmail' ? 'hero' : (id === 'footEmail' ? 'footer' : (id === 'artEmail' ? 'article' : 'newsletter'));
   var data = new FormData();
   data.append('email', v);
   data.append('asunto', 'Nueva suscripción newsletter');
