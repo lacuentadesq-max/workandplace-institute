@@ -240,7 +240,7 @@ footer{background:#295a49;padding:64px 0 32px}
 
 .sig-item-inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start}
 .sig-item-cat{font-size:.72rem;font-weight:600;letter-spacing:0;color:#5d6f67;margin-bottom:10px}
-.sig-item-title{font-family:var(--f-s);font-size:clamp(1.15rem,2vw,1.45rem);font-weight:500;color:#173d32;line-height:1.3}
+.sig-item-title{font-family:var(--f-s);font-size:clamp(1.15rem,2vw,1.45rem);font-weight:500;color:var(--petrol);line-height:1.3}
 .sig-takeaways-wrap{margin:18px 0 0 18px;padding-left:18px;border-left:1px solid rgba(41,90,73,.14);max-width:720px}
 .sig-takeaways-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:8px}
 .sig-takeaways{list-style:none;margin:0;padding:0;display:grid;gap:7px}
@@ -2467,9 +2467,26 @@ function publishedDate(dateStr, lang){
   return (lang === 'en' ? 'Published ' : 'Publicado el ') + formatted;
 }
 
+function formattedDate(dateStr, lang){
+  if (!dateStr) return '';
+  var d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return '';
+  var locale = lang === 'en' ? 'en-GB' : 'es-ES';
+  return d.toLocaleDateString(locale, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+
 function signalMeta(signal, lang){
   var readLabel = lang === 'en' ? 'min read' : 'min lectura';
   return publishedDate(signalDate(signal), lang) + ' · ' + (signal.readTime || 3) + ' ' + readLabel;
+}
+
+function signalListMeta(signal, lang){
+  var readLabel = lang === 'en' ? 'min read' : 'min lectura';
+  return escapeHtml(formattedDate(signalDate(signal), lang)) + '<br>' + (signal.readTime || 3) + ' ' + readLabel;
 }
 
 function signalIssueLabel(index){
@@ -2557,7 +2574,7 @@ function renderSignalsList(){
   var html = '';
   VISIBLE_SIGNALS_DATA.forEach(function(s, i){
     var t = signalContent(s, lang);
-    var meta = signalMeta(s, lang);
+    var meta = signalListMeta(s, lang);
     var issueLabel = signalIssueLabel(i);
     var takeaways = signalTakeaways(s, lang).map(function(item){
       return '<li>' + escapeHtml(item) + '</li>';
