@@ -2490,7 +2490,7 @@ function escapeHtml(value) {
 }
 
 function loadSignals() {
-  fetch('signals.json', { cache: 'no-store' })
+  fetch('signals.json?v=' + Date.now(), { cache: 'no-store' })
     .then(function(resp) { return resp.ok ? resp.json() : null; })
     .then(function(data) {
       if (!data) return;
