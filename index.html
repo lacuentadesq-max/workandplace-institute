@@ -255,6 +255,43 @@ footer{background:#295a49;padding:64px 0 32px}
 .art-body p{font-size:.98rem;color:var(--ink);line-height:1.88;margin-bottom:28px}
 .art-body p:first-child{font-size:1.06rem;font-weight:300;color:var(--muted)}
 
+/* Encabezados de sección dentro del artículo (ej. "01 Resumen ejecutivo") */
+.art-body h3{font-family:var(--f-g);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin:44px 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.art-body h3:first-child{margin-top:0}
+
+/* Subtítulo de cada señal individual dentro de una sección */
+.art-body h4{font-family:var(--f-s);font-size:1.25rem;font-weight:400;color:var(--ink);line-height:1.35;margin:36px 0 6px}
+
+/* Fuente y fecha en cursiva bajo cada subtítulo */
+.art-body .art-source{display:block;font-size:.78rem;font-style:italic;color:var(--muted);margin-bottom:16px}
+
+/* Cita destacada tipo "Lectura Work&Place" */
+.art-body blockquote{background:var(--faint);border-left:3px solid var(--petrol);border-radius:0 6px 6px 0;padding:16px 22px;margin:20px 0 28px}
+.art-body blockquote p{font-size:.92rem;font-style:italic;color:var(--ink2);line-height:1.7;margin-bottom:10px}
+.art-body blockquote p:last-child{margin-bottom:0}
+.art-body blockquote strong{font-style:normal;color:var(--petrol)}
+
+/* Listas (indicadores, hoja de ruta simple) */
+.art-body ul{margin:0 0 28px;padding-left:0;list-style:none}
+.art-body ul li{position:relative;padding-left:20px;font-size:.94rem;color:var(--ink);line-height:1.75;margin-bottom:12px}
+.art-body ul li::before{content:"—";position:absolute;left:0;color:var(--petrol);font-weight:600}
+.art-body ul li strong{color:var(--ink)}
+
+/* Tabla (hoja de ruta por perfil) */
+.art-body table{width:100%;border-collapse:collapse;margin:8px 0 32px;font-size:.88rem}
+.art-body table th{text-align:left;font-family:var(--f-g);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--petrol);padding:10px 16px;border-bottom:2px solid var(--border)}
+.art-body table td{padding:14px 16px;border-bottom:1px solid var(--border);color:var(--ink);line-height:1.6;vertical-align:top}
+.art-body table td:first-child{font-weight:600;white-space:nowrap}
+
+/* Referencias */
+.art-body .art-refs{margin:0;padding-left:0;list-style:none}
+.art-body .art-refs li{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.art-body .art-refs a{color:var(--petrol);text-decoration:none;border-bottom:1px solid var(--bmd)}
+.art-body .art-refs a:hover{border-bottom-color:var(--petrol)}
+
+.art-body a{color:var(--petrol)}
+.art-body strong{color:var(--ink);font-weight:600}
+
 /* INSIGHTS PAGE */
 .pg-insights{padding-top:62px}
 .ins-hero{background:var(--ink);padding:clamp(80px,10vh,120px) 0 clamp(64px,8vh,96px);position:relative;overflow:hidden}
@@ -413,6 +450,9 @@ footer{background:#295a49;padding:64px 0 32px}
   .art-view{padding:48px 0 80px}
   .art-h{font-size:clamp(1.5rem,6vw,2.2rem)}
   .art-body{padding:28px 0;max-width:100%}
+  .art-body table{display:block;overflow-x:auto;white-space:nowrap}
+  .art-body h3{font-size:.65rem;margin:32px 0 14px}
+  .art-body h4{font-size:1.1rem;margin:28px 0 6px}
 
   /* insights page */
   .pg-insights{overflow-x:hidden}
