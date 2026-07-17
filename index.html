@@ -1084,8 +1084,7 @@ footer{background:#295a49;padding:64px 0 32px}
         <div>
           <div class="label sig-label">Signals from the Office</div>
           <h1 class="sig-h"><span data-i18n="sig_h1_a">Recibe una se&ntilde;al a la semana</span><br><em data-i18n="sig_h1_b">lo que importa</em></h1>
-          <p class="sig-desc" data-i18n="sig_desc1">No es un blog. No es un agregador de noticias.</p>
-          <p class="sig-desc" style="margin-top:14px" data-i18n="sig_desc2">Es un espacio de lectura &aacute;gil donde filtramos e interpretamos con criterio las se&ntilde;ales que realmente importan en el mundo de la oficina, el trabajo y el espacio corporativo.</p>
+          <p class="sig-desc" data-i18n="sig_desc1">Cada viernes recibes un análisis de las señales que están transformando el futuro de la oficina para ayudarte a entender qué cambia y por qué importa.</p>
 
           <p class="sig-byline"><span data-i18n="sig_por">Por</span> <button onclick="window._nosotrasTarget='sq';showPage('page-nosotras')"" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Susana Quint&aacute;s</strong></button> y <button onclick="window._nosotrasTarget='jg';showPage('page-nosotras')" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Joaquina Garrido-Arroquia</strong></button></p>
         </div>
@@ -1105,28 +1104,11 @@ footer{background:#295a49;padding:64px 0 32px}
     </div>
     <div class="sig-archive">
       <div class="sig-archive-header">
-        <span class="sig-list-label" data-i18n="sig_archive_label">Últimas se&ntilde;ales</span>
+        <span class="sig-list-label" data-i18n="sig_archive_label">Newsletter anteriores</span>
       </div>
-      <div class="sig-list">
-      <a class="sig-item" onclick="showArt(0);return false;" href="#">
-        <div class="sig-item-inner"><div><div class="sig-item-cat">Regulaci&oacute;n</div><div class="sig-item-title">La nueva directiva europea de eficiencia energ&eacute;tica en edificios y qu&eacute; implica para el workplace corporativo</div></div><div class="sig-item-meta">Hoy<br>3 min</div></div>
-      </a>
-      <a class="sig-item" onclick="showArt(1);return false;" href="#">
-        <div class="sig-item-inner"><div><div class="sig-item-cat">Tecnolog&iacute;a &amp; Datos</div><div class="sig-item-title">Sensores, IA y datos de ocupaci&oacute;n: c&oacute;mo la medici&oacute;n est&aacute; transformando la gesti&oacute;n del espacio</div></div><div class="sig-item-meta">Ayer<br>4 min</div></div>
-      </a>
-      <a class="sig-item" onclick="showArt(2);return false;" href="#">
-        <div class="sig-item-inner"><div><div class="sig-item-cat">Asset Value</div><div class="sig-item-title">El descuento verde ya existe: qu&eacute; activos pierden valor por no adaptarse a los criterios ESG</div></div><div class="sig-item-meta">Hace 2 d<br>5 min</div></div>
-      </a>
-      <a class="sig-item" onclick="showArt(3);return false;" href="#">
-        <div class="sig-item-inner"><div><div class="sig-item-cat">Experiencia del empleado</div><div class="sig-item-title">Cuando el dise&ntilde;o del espacio determina la atracci&oacute;n de talento: evidencia y lecturas de mercado</div></div><div class="sig-item-meta">Hace 3 d<br>4 min</div></div>
-      </a>
-      <a class="sig-item" onclick="showArt(4);return false;" href="#">
-        <div class="sig-item-inner"><div><div class="sig-item-cat">Workplace</div><div class="sig-item-title">Post-pandemia: el modelo h&iacute;brido no es el destino, sino el punto de partida</div></div><div class="sig-item-meta">Hace 5 d<br>4 min</div></div>
-      </a>
-      <a class="sig-item" onclick="showArt(5);return false;" href="#">
-        <div class="sig-item-inner"><div><div class="sig-item-cat">Sostenibilidad</div><div class="sig-item-title">El Reglamento CSRD y su impacto en la medici&oacute;n del espacio corporativo como activo ESG</div></div><div class="sig-item-meta">Hace 6 d<br>5 min</div></div>
-      </a>
-    </div>
+      <div class="sig-list" id="sig-list-items">
+        <p style="padding:24px 0;color:var(--muted);font-size:.9rem" id="sig-list-loading">Cargando señales...</p>
+      </div>
     </div><!-- /sig-archive -->
   </div>
   <!-- Article view -->
@@ -1734,10 +1716,9 @@ var T = {
     sig_label: 'Signals from the Office',
     sig_h1_a: 'Recibe una señal a la semana',
     sig_h1_b: 'sobre lo que importa',
-    sig_desc1: 'No es un blog. No es un agregador de noticias.',
-    sig_desc2: 'Es un espacio de lectura ágil donde filtramos e interpretamos con criterio las señales que realmente importan en el mundo de la oficina, el trabajo y el espacio corporativo.',
+    sig_desc1: 'Cada viernes recibes un análisis de las señales que están transformando el futuro de la oficina para ayudarte a entender qué cambia y por qué importa.',
     sig_sub_label: 'Suscríbete para recibirlas cada mañana',
-    sig_archive_label: 'Últimas señales',
+    sig_archive_label: 'Newsletter anteriores',
     sig_por: 'Por',
 
     // Insights page
@@ -2009,10 +1990,9 @@ var T = {
     sig_label: 'Signals from the Office',
     sig_h1_a: 'One signal a week',
     sig_h1_b: 'on what matters',
-    sig_desc1: 'Not a blog. Not a news aggregator.',
-    sig_desc2: 'An agile reading space where we filter and interpret with rigour the signals that truly matter in the world of office, work and corporate space.',
+    sig_desc1: 'Every Friday you get an analysis of the signals shaping the future of the office, to help you understand what\'s changing and why it matters.',
     sig_sub_label: 'Subscribe to receive them every morning',
-    sig_archive_label: 'Latest signals',
+    sig_archive_label: 'Previous newsletters',
     sig_por: 'By',
 
     // Insights page
@@ -2159,21 +2139,7 @@ var T = {
   }
 };
 
-// English article bodies
-var ARTS_EN = [
-  {cat:"Regulation",title:"The new European energy efficiency directive for buildings and what it means for corporate workplace",meta:"Today · 3 min read",
-   body:"<p>Directive (EU) 2024/1275 — the revised EPBD — sets the most demanding standards to date for buildings across Europe. From 2030, buildings with the poorest energy ratings must reach at least class E. By 2033, class D.</p><p>For workplace and corporate real estate managers, this is not a future issue: it is active pressure on portfolio decisions today. Tenants with ESG commitments already demand green lease contracts.</p><p>The strategic reading is clear: regulatory compliance is no longer the minimum — it is the market entry threshold.</p>"},
-  {cat:"Technology & Data",title:"Sensors, AI and occupancy data: how measurement is transforming space management",meta:"Yesterday · 4 min read",
-   body:"<p>AI-based occupancy systems are no longer exclusive to large corporate portfolios. In 2024, adoption has accelerated among mid-sized organisations too.</p><p>The question is no longer whether to measure, but what to do with the data. Companies that extract real value combine real-time data, aggregated behaviour patterns and correlation with business metrics.</p>"},
-  {cat:"Asset Value",title:"The green discount is real: which assets lose value by not adapting to ESG criteria",meta:"2 days ago · 5 min read",
-   body:"<p>The 'brown discount' is no longer a hypothesis. Data from JLL, CBRE and Savills for the European market shows that buildings without energy certification are recording higher vacancy rates, below-market rents and lower liquidity in divestment processes.</p><p>For corporate real estate managers: holding assets with poor energy profiles carries a measurable and growing financial cost.</p>"},
-  {cat:"Employee experience",title:"When space design determines talent attraction",meta:"3 days ago · 4 min read",
-   body:"<p>Leesman Index 2023-2024 data shows that employees who rate their workspace positively are 42% more likely to recommend the company as an employer.</p><p>Space is no longer designed to house people, but to activate specific behaviours with rigour and evidence.</p>"},
-  {cat:"Workplace",title:"Post-pandemic: the hybrid model is not the destination, but the starting point",meta:"5 days ago · 4 min read",
-   body:"<p>Four years after the 2020 shock, hybrid work has moved from emergency response to the framework from which the entire logic of corporate space is being reconsidered.</p><p>The strategic question is not how many days employees come in, but why they come. And that answer defines what kind of space makes sense.</p>"},
-  {cat:"Sustainability",title:"The CSRD regulation and its impact on measuring space as an ESG asset",meta:"6 days ago · 5 min read",
-   body:"<p>CSRD requires European companies to report on their environmental impacts with unprecedented detail. For workplace managers, this has a direct implication: physical assets enter the ESG reporting perimeter.</p><p>Those not measuring today will be improvising at audit time.</p>"}
-];
+// (ARTS_EN eliminado: las señales en inglés ahora se cargan dinámicamente desde signals.json)
 
 var INSIGHTS_EN = [
   {cat:"Manifesto",title:"The office as a system",meta:"Work & Place Institute · 2024",
@@ -2220,9 +2186,8 @@ function switchLang(lang) {
     if (t[key] !== undefined) el.innerHTML = t[key];
   });
 
-  // Update article list in signals
-  window._currentArt = undefined;
-  renderSignalList();
+  // Update article list in signals (re-render from loaded data in new lang)
+  renderSignalsList();
 
   // Update insight cards
   var INS_ACTIVE = (lang === 'en') ? INSIGHTS_EN : INSIGHTS_DATA;
@@ -2252,13 +2217,14 @@ function switchLang(lang) {
   // If a signals article is currently open, re-render it in new lang
   var sigArt = document.getElementById('sig-art');
   if (sigArt && sigArt.style.display === 'block' && window._currentArt !== undefined) {
-    var ARTS_ACTIVE2 = (lang === 'en') ? ARTS_EN : ARTS;
-    var a2 = ARTS_ACTIVE2[window._currentArt];
-    if (a2) {
-      document.getElementById('art-cat').textContent = a2.cat;
-      document.getElementById('art-title').textContent = a2.title;
-      document.getElementById('art-meta').textContent = a2.meta;
-      document.getElementById('art-body').innerHTML = a2.body;
+    var s2 = SIGNALS_DATA[window._currentArt];
+    if (s2) {
+      var t2 = s2[lang] || s2.es || s2.en || {};
+      var readLabel2 = lang === 'en' ? 'min read' : 'min lectura';
+      document.getElementById('art-cat').textContent = t2.cat || '';
+      document.getElementById('art-title').textContent = t2.title || '';
+      document.getElementById('art-meta').textContent = relativeDate(s2.date, lang) + ' · ' + (s2.readTime||3) + ' ' + readLabel2;
+      document.getElementById('art-body').innerHTML = t2.body || '';
     }
   }
   // Store preference
@@ -2342,12 +2308,16 @@ window.addEventListener('popstate', function(e) {
   if (state.artIdx !== undefined && pageId === 'page-signals') {
     showPage('page-signals', false);
     // Restore article view directly without pushing new history
-    var a = ARTS[state.artIdx];
-    if (a) {
-      document.getElementById('art-cat').textContent = a.cat;
-      document.getElementById('art-title').textContent = a.title;
-      document.getElementById('art-meta').textContent = a.meta;
-      document.getElementById('art-body').innerHTML = a.body;
+    var lang0 = (typeof LANG !== 'undefined' && LANG === 'en') ? 'en' : 'es';
+    var s0 = SIGNALS_DATA[state.artIdx];
+    if (s0) {
+      var t0 = s0[lang0] || s0.es || s0.en || {};
+      var readLabel0 = lang0 === 'en' ? 'min read' : 'min lectura';
+      window._currentArt = state.artIdx;
+      document.getElementById('art-cat').textContent = t0.cat || '';
+      document.getElementById('art-title').textContent = t0.title || '';
+      document.getElementById('art-meta').textContent = relativeDate(s0.date, lang0) + ' · ' + (s0.readTime||3) + ' ' + readLabel0;
+      document.getElementById('art-body').innerHTML = t0.body || '';
       document.getElementById('sig-list').style.display = 'none';
       var v = document.getElementById('sig-art');
       v.style.display = 'block'; v.classList.add('visible');
@@ -2402,111 +2372,90 @@ function scrollToSection(id) {
 // ═══════════════════════════════════════════════════
 // SIGNALS: article open/close
 // ═══════════════════════════════════════════════════
-var ARTS = [
-  {cat:"Regulación",title:"La nueva directiva europea de eficiencia energética en edificios",meta:"Hoy · 3 min lectura",
-   body:"<p>La Directiva (UE) 2024/1275 — EPBD revisada — establece los estándares más exigentes hasta la fecha para los inmuebles en Europa. A partir de 2030, los edificios con peores calificaciones energéticas deberán alcanzar al menos la clase E. Para 2033, la clase D.</p><p>Para los responsables de workplace y real estate corporativo, esto no es una cuestión de futuro: es una presión activa sobre las decisiones de cartera hoy. Los arrendatarios con compromisos ESG ya exigen contratos green lease.</p><p>La lectura estratégica es clara: el cumplimiento regulatorio ya no es el mínimo, es el umbral de entrada al mercado.</p>"},
-  {cat:"Tecnología & Datos",title:"Sensores, IA y datos de ocupación: cómo la medición transforma la gestión del espacio",meta:"Ayer · 4 min lectura",
-   body:"<p>Los sistemas de ocupación basados en inteligencia artificial ya no son exclusivos de los grandes portfolios corporativos. En 2024, la adopción se ha acelerado también en organizaciones medianas.</p><p>La pregunta ya no es si medir, sino qué hacer con los datos. Las empresas que obtienen valor real combinan datos en tiempo real, patrones de comportamiento agregados y correlación con métricas de negocio.</p>"},
-  {cat:"Asset Value",title:"El descuento verde ya existe: qué activos pierden valor por no adaptarse a los criterios ESG",meta:"Hace 2 días · 5 min lectura",
-   body:"<p>El 'brown discount' ya no es una hipótesis. Datos de JLL, CBRE y Savills para el mercado europeo muestran que los edificios sin certificación energética están registrando mayores tasas de vacancia, rentas por debajo del mercado y menor liquidez en procesos de desinversión.</p><p>Para los responsables de real estate corporativo: mantener activos con perfil energético deficiente tiene un coste financiero mensurable y creciente.</p>"},
-  {cat:"Experiencia del empleado",title:"Cuando el diseño del espacio determina la atracción de talento",meta:"Hace 3 días · 4 min lectura",
-   body:"<p>Datos del Leesman Index 2023-2024 muestran que los empleados que valoran positivamente su espacio de trabajo tienen un 42% más de probabilidad de recomendar la empresa como empleador.</p><p>El espacio ya no se diseña para alojar personas, sino para activar comportamientos concretos con criterio y evidencia.</p>"},
-  {cat:"Workplace",title:"Post-pandemia: el modelo híbrido no es el destino, sino el punto de partida",meta:"Hace 5 días · 4 min lectura",
-   body:"<p>Cuatro años después del shock de 2020, el trabajo híbrido ha dejado de ser una respuesta de emergencia para convertirse en el marco desde el que se replantea la lógica entera del espacio corporativo.</p><p>La pregunta estratégica no es cuántos días vienen los empleados, sino para qué vienen. Y esa respuesta define qué tipo de espacio tiene sentido.</p>"},
-  {cat:"Sostenibilidad",title:"El Reglamento CSRD y su impacto en la medición del espacio como activo ESG",meta:"Hace 6 días · 5 min lectura",
-   body:"<p>La CSRD exige a las empresas europeas reportar sobre sus impactos ambientales con un nivel de detalle sin precedentes. Para los responsables de workplace, esto tiene una implicación directa: los activos físicos entran en el perímetro del reporting ESG.</p><p>Quien no esté midiendo hoy estará improvisando en el momento de la auditoría.</p>"}
+// ═══════════════════════════════════════════════════
+// SIGNALS: carga dinámica desde signals.json
+// ═══════════════════════════════════════════════════
+// Formato esperado de signals.json:
+// { "signals": [
+//     { "id": "slug-unico", "date": "2026-07-17", "readTime": 3,
+//       "es": { "cat": "Regulación", "title": "...", "body": "<p>...</p>" },
+//       "en": { "cat": "Regulation", "title": "...", "body": "<p>...</p>" }
+//     }, ...
+// ]}
+var SIGNALS_DATA = [];
+
+// Fallback mínimo por si signals.json no carga (red, archivo local, error 404)
+var SIGNALS_FALLBACK = [
+  {id:"fallback-1", date:"2026-07-17", readTime:3,
+   es:{cat:"Regulación", title:"La nueva directiva europea de eficiencia energética en edificios", body:"<p>La Directiva (UE) 2024/1275 — EPBD revisada — establece los estándares más exigentes hasta la fecha para los inmuebles en Europa.</p>"},
+   en:{cat:"Regulation", title:"The new European energy efficiency directive for buildings", body:"<p>Directive (EU) 2024/1275 — the revised EPBD — sets the most demanding standards to date for buildings across Europe.</p>"}}
 ];
 
-function signalMeta(item, lang) {
-  if (item.meta) return item.meta;
-  if (item.date) {
-    var d = new Date(item.date + 'T00:00:00');
-    var locale = lang === 'en' ? 'en-GB' : 'es-ES';
-    var dateLabel = isNaN(d.getTime()) ? item.date : d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
-    var mins = item.readTime || 3;
-    return lang === 'en' ? dateLabel + ' · ' + mins + ' min read' : dateLabel + ' · ' + mins + ' min lectura';
+function relativeDate(dateStr, lang){
+  var d = new Date(dateStr + 'T00:00:00');
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var diffDays = Math.round((today - d) / 86400000);
+  if (lang === 'en') {
+    if (diffDays <= 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    return diffDays + ' days ago';
   }
-  return lang === 'en' ? 'Signal · 3 min read' : 'Señal · 3 min lectura';
+  if (diffDays <= 0) return 'Hoy';
+  if (diffDays === 1) return 'Ayer';
+  return 'Hace ' + diffDays + ' días';
 }
 
-function normaliseSignal(item) {
-  if (item.es || item.en) {
-    return {
-      es: {
-        cat: (item.es && item.es.cat) || item.cat || '',
-        title: (item.es && item.es.title) || item.title || '',
-        meta: signalMeta(item, 'es'),
-        body: (item.es && item.es.body) || item.body || ''
-      },
-      en: {
-        cat: (item.en && item.en.cat) || item.cat_en || item.cat || '',
-        title: (item.en && item.en.title) || item.title_en || item.title || '',
-        meta: signalMeta(item, 'en'),
-        body: (item.en && item.en.body) || item.body_en || item.body || ''
-      }
-    };
-  }
-  return {
-    es: {
-      cat: item.cat || '',
-      title: item.title || '',
-      meta: item.meta || signalMeta(item, 'es'),
-      body: item.body || ''
-    },
-    en: {
-      cat: item.cat_en || item.cat || '',
-      title: item.title_en || item.title || '',
-      meta: item.meta_en || item.meta || signalMeta(item, 'en'),
-      body: item.body_en || item.body || ''
-    }
-  };
-}
-
-function setSignals(items) {
-  var normalised = (items || []).map(normaliseSignal);
-  if (!normalised.length) return;
-  ARTS = normalised.map(function(item) { return item.es; });
-  ARTS_EN = normalised.map(function(item) { return item.en; });
-  renderSignalList();
-}
-
-function renderSignalList() {
-  var list = document.querySelector('#page-signals .sig-list');
-  if (!list) return;
-  var active = (typeof LANG !== "undefined" && LANG === "en") ? ARTS_EN : ARTS;
-  list.innerHTML = active.map(function(item, i) {
-    return '<a class="sig-item" onclick="showArt(' + i + ');return false;" href="#">' +
-      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + escapeHtml(item.cat || '') + '</div>' +
-      '<div class="sig-item-title">' + escapeHtml(item.title || '') + '</div></div>' +
-      '<div class="sig-item-meta">' + escapeHtml(item.meta || '').replace(' · ', '<br>') + '</div></div>' +
-      '</a>';
-  }).join('');
-}
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, function(ch) {
-    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
-  });
-}
-
-function loadSignals() {
-  fetch('signals.json?v=' + Date.now(), { cache: 'no-store' })
-    .then(function(resp) { return resp.ok ? resp.json() : null; })
-    .then(function(data) {
-      if (!data) return;
-      setSignals(Array.isArray(data) ? data : data.signals);
+function loadSignals(){
+  fetch('signals.json', {cache:'no-cache'})
+    .then(function(r){ if(!r.ok) throw new Error('signals.json not found'); return r.json(); })
+    .then(function(data){
+      SIGNALS_DATA = (data && Array.isArray(data.signals)) ? data.signals.slice() : [];
+      SIGNALS_DATA.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+      renderSignalsList();
     })
-    .catch(function() {});
+    .catch(function(){
+      SIGNALS_DATA = SIGNALS_FALLBACK.slice();
+      renderSignalsList();
+    });
+}
+
+function renderSignalsList(){
+  var lang = (typeof LANG !== 'undefined' && LANG === 'en') ? 'en' : 'es';
+  var container = document.getElementById('sig-list-items');
+  if (!container) return;
+
+  if (!SIGNALS_DATA.length) {
+    container.innerHTML = '<p style="padding:24px 0;color:var(--muted);font-size:.9rem">' +
+      (lang === 'en' ? 'No signals published yet.' : 'Todavía no hay señales publicadas.') + '</p>';
+    return;
+  }
+
+  var readLabel = lang === 'en' ? 'min read' : 'min';
+  var html = '';
+  SIGNALS_DATA.forEach(function(s, i){
+    var t = s[lang] || s.es || s.en || {};
+    var rel = relativeDate(s.date, lang);
+    html += '<a class="sig-item" onclick="showArt(' + i + ');return false;" href="#">' +
+      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + (t.cat||'') + '</div>' +
+      '<div class="sig-item-title">' + (t.title||'') + '</div></div>' +
+      '<div class="sig-item-meta">' + rel + '<br>' + (s.readTime||3) + ' ' + readLabel + '</div></div>' +
+      '</a>';
+  });
+  container.innerHTML = html;
 }
 
 function showArt(i) {
   window._currentArt = i;
-  var ARTS_ACTIVE = (typeof LANG !== "undefined" && LANG === "en") ? ARTS_EN : ARTS;
-  var a = ARTS_ACTIVE[i];
-  document.getElementById('art-cat').textContent = a.cat;
-  document.getElementById('art-title').textContent = a.title;
-  document.getElementById('art-meta').textContent = a.meta;
-  document.getElementById('art-body').innerHTML = a.body;
+  var lang = (typeof LANG !== 'undefined' && LANG === 'en') ? 'en' : 'es';
+  var s = SIGNALS_DATA[i];
+  if (!s) return;
+  var t = s[lang] || s.es || s.en || {};
+  var readLabel = lang === 'en' ? 'min read' : 'min lectura';
+  document.getElementById('art-cat').textContent = t.cat || '';
+  document.getElementById('art-title').textContent = t.title || '';
+  document.getElementById('art-meta').textContent = relativeDate(s.date, lang) + ' · ' + (s.readTime||3) + ' ' + readLabel;
+  document.getElementById('art-body').innerHTML = t.body || '';
   document.getElementById('sig-list').style.display = 'none';
   var v = document.getElementById('sig-art');
   v.style.display = 'block';
@@ -2521,8 +2470,6 @@ function hideArt() {
   v.classList.remove('visible');
   window.scrollTo(0, 0);
 }
-
-loadSignals();
 
 // ═══════════════════════════════════════════════════
 // INSIGHTS: article open/close
@@ -2664,6 +2611,9 @@ if (contactForm) {
   if (home) { home.style.display = 'block'; home.classList.add('active'); }
   // Set active nav based on URL hash on load
 })();
+
+// Cargar las señales desde signals.json en cuanto la página arranca
+loadSignals();
 
 // ══════════════════════════════════════════════
 // NOSOTRAS — fully self-contained, DOMContentLoaded
