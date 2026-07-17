@@ -2222,17 +2222,7 @@ function switchLang(lang) {
 
   // Update article list in signals
   window._currentArt = undefined;
-  var ARTS_ACTIVE = (lang === 'en') ? ARTS_EN : ARTS;
-  document.querySelectorAll('.sig-item').forEach(function(el, i) {
-    if (ARTS_ACTIVE[i]) {
-      var cat = el.querySelector('.sig-item-cat');
-      var title = el.querySelector('.sig-item-title');
-      var meta = el.querySelector('.sig-item-meta');
-      if (cat) cat.textContent = ARTS_ACTIVE[i].cat;
-      if (title) title.textContent = ARTS_ACTIVE[i].title;
-      if (meta) meta.innerHTML = ARTS_ACTIVE[i].meta.replace(' · ', '<br>');
-    }
-  });
+  renderSignalList();
 
   // Update insight cards
   var INS_ACTIVE = (lang === 'en') ? INSIGHTS_EN : INSIGHTS_DATA;
@@ -2427,6 +2417,88 @@ var ARTS = [
    body:"<p>La CSRD exige a las empresas europeas reportar sobre sus impactos ambientales con un nivel de detalle sin precedentes. Para los responsables de workplace, esto tiene una implicación directa: los activos físicos entran en el perímetro del reporting ESG.</p><p>Quien no esté midiendo hoy estará improvisando en el momento de la auditoría.</p>"}
 ];
 
+function signalMeta(item, lang) {
+  if (item.meta) return item.meta;
+  if (item.date) {
+    var d = new Date(item.date + 'T00:00:00');
+    var locale = lang === 'en' ? 'en-GB' : 'es-ES';
+    var dateLabel = isNaN(d.getTime()) ? item.date : d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
+    var mins = item.readTime || 3;
+    return lang === 'en' ? dateLabel + ' · ' + mins + ' min read' : dateLabel + ' · ' + mins + ' min lectura';
+  }
+  return lang === 'en' ? 'Signal · 3 min read' : 'Señal · 3 min lectura';
+}
+
+function normaliseSignal(item) {
+  if (item.es || item.en) {
+    return {
+      es: {
+        cat: (item.es && item.es.cat) || item.cat || '',
+        title: (item.es && item.es.title) || item.title || '',
+        meta: signalMeta(item, 'es'),
+        body: (item.es && item.es.body) || item.body || ''
+      },
+      en: {
+        cat: (item.en && item.en.cat) || item.cat_en || item.cat || '',
+        title: (item.en && item.en.title) || item.title_en || item.title || '',
+        meta: signalMeta(item, 'en'),
+        body: (item.en && item.en.body) || item.body_en || item.body || ''
+      }
+    };
+  }
+  return {
+    es: {
+      cat: item.cat || '',
+      title: item.title || '',
+      meta: item.meta || signalMeta(item, 'es'),
+      body: item.body || ''
+    },
+    en: {
+      cat: item.cat_en || item.cat || '',
+      title: item.title_en || item.title || '',
+      meta: item.meta_en || item.meta || signalMeta(item, 'en'),
+      body: item.body_en || item.body || ''
+    }
+  };
+}
+
+function setSignals(items) {
+  var normalised = (items || []).map(normaliseSignal);
+  if (!normalised.length) return;
+  ARTS = normalised.map(function(item) { return item.es; });
+  ARTS_EN = normalised.map(function(item) { return item.en; });
+  renderSignalList();
+}
+
+function renderSignalList() {
+  var list = document.querySelector('#page-signals .sig-list');
+  if (!list) return;
+  var active = (typeof LANG !== "undefined" && LANG === "en") ? ARTS_EN : ARTS;
+  list.innerHTML = active.map(function(item, i) {
+    return '<a class="sig-item" onclick="showArt(' + i + ');return false;" href="#">' +
+      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + escapeHtml(item.cat || '') + '</div>' +
+      '<div class="sig-item-title">' + escapeHtml(item.title || '') + '</div></div>' +
+      '<div class="sig-item-meta">' + escapeHtml(item.meta || '').replace(' · ', '<br>') + '</div></div>' +
+      '</a>';
+  }).join('');
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, function(ch) {
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+  });
+}
+
+function loadSignals() {
+  fetch('signals.json', { cache: 'no-store' })
+    .then(function(resp) { return resp.ok ? resp.json() : null; })
+    .then(function(data) {
+      if (!data) return;
+      setSignals(Array.isArray(data) ? data : data.signals);
+    })
+    .catch(function() {});
+}
+
 function showArt(i) {
   window._currentArt = i;
   var ARTS_ACTIVE = (typeof LANG !== "undefined" && LANG === "en") ? ARTS_EN : ARTS;
@@ -2449,6 +2521,8 @@ function hideArt() {
   v.classList.remove('visible');
   window.scrollTo(0, 0);
 }
+
+loadSignals();
 
 // ═══════════════════════════════════════════════════
 // INSIGHTS: article open/close
