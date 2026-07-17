@@ -234,12 +234,12 @@ footer{background:#295a49;padding:64px 0 32px}
 .ss-form button{flex-shrink:0;background:var(--ink);color:#fff;border:none;border-radius:100px;padding:10px 20px;font-family:var(--f-g);font-size:.78rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
 .ss-form button:hover{background:#1c3e33}
 .ss-form-note{font-size:.68rem;color:var(--muted);opacity:.6}
-.sig-list{padding:0}
-.sig-item{padding:32px 0;border-bottom:1px solid var(--border);cursor:pointer;display:block;transition:background .1s,margin .12s,padding .12s;text-decoration:none;color:inherit}
-.sig-item:first-child{border-top:1px solid var(--border)}
+.sig-list{padding:0;display:grid;gap:20px}
+.sig-item{padding:28px 32px;border:1px solid rgba(41,90,73,.13);border-radius:28px;background:#fff;cursor:pointer;display:block;text-decoration:none;color:inherit;box-shadow:0 4px 22px rgba(41,90,73,.07);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.sig-item:first-child{border-top:1px solid rgba(41,90,73,.12)}
 
 .sig-item-inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start}
-.sig-item-cat{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:10px}
+.sig-item-cat{font-size:.72rem;font-weight:600;letter-spacing:0;color:#5d6f67;margin-bottom:10px}
 .sig-item-title{font-family:var(--f-s);font-size:clamp(1.15rem,2vw,1.45rem);font-weight:500;color:#173d32;line-height:1.3}
 .sig-takeaways-wrap{margin:18px 0 0 18px;padding-left:18px;border-left:1px solid rgba(41,90,73,.14);max-width:720px}
 .sig-takeaways-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:8px}
@@ -445,7 +445,8 @@ footer{background:#295a49;padding:64px 0 32px}
   /* signals page */
   .pg-signals{overflow-x:hidden}
   .sig-h{font-size:clamp(2rem,8vw,3rem)}
-  .sig-archive{padding:0 16px}
+  .sig-archive{padding:0}
+  .sig-item{padding:24px 18px}
   .sig-item-inner{grid-template-columns:1fr}.sig-item-meta{display:none}
   .ss-form{flex-direction:column;border-radius:12px;padding:8px;gap:8px}
   .ss-form input{font-size:16px}
@@ -574,13 +575,13 @@ footer{background:#295a49;padding:64px 0 32px}
 
 /* signals archive card */
 .sig-archive{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:8px;
+  background:transparent;
+  border:0;
+  border-radius:0;
   margin:48px 0 64px;
-  padding:0 40px;
-  overflow:hidden;
-  box-shadow:0 2px 24px rgba(41,90,73,.05);
+  padding:0;
+  overflow:visible;
+  box-shadow:none;
 }
 .sig-archive-header{
   display:flex;
@@ -602,26 +603,24 @@ footer{background:#295a49;padding:64px 0 32px}
 }
 /* adjust item hover to match card padding */
 .sig-archive .sig-item{
-  border-bottom:1px solid rgba(41,90,73,.06);
+  border-bottom:1px solid rgba(41,90,73,.12);
 }
 .sig-archive .sig-item:first-child{
-  border-top:none;
+  border-top:1px solid rgba(41,90,73,.12);
 }
 .sig-archive .sig-item:last-child{
-  border-bottom:none;
+  border-bottom:1px solid rgba(41,90,73,.12);
 }
 
 
-/* sig-item rich hover */
-.sig-item{transition:background .18s ease}
 .sig-item-title{transition:transform .22s ease}
 .sig-item-meta{transition:transform .22s ease}
 .sig-item-cta{transition:color .18s,border-color .18s,transform .22s ease}
-.sig-archive .sig-item:hover{background:rgba(41,90,73,.06)}
-.sig-archive .sig-item:hover .sig-item-title{transform:translateX(18px)}
+.sig-archive .sig-item:hover{background:#fff;border-color:rgba(41,90,73,.24);box-shadow:0 12px 38px rgba(41,90,73,.14);transform:translateY(-2px)}
+.sig-archive .sig-item:hover .sig-item-title{transform:translateX(10px)}
 .sig-archive .sig-item:hover .sig-item-meta{transform:translateX(-14px)}
 .sig-archive .sig-item:hover .sig-item-cta{color:#173d32;border-bottom-color:#173d32;transform:translateX(6px)}
-.sig-archive .sig-item:hover .sig-item-cat{opacity:.8}
+.sig-archive .sig-item:hover .sig-item-cat{opacity:.95}
 
 /* hero-card hover lift */
 .hero-card:hover{transform:translateY(-4px);box-shadow:0 12px 48px rgba(41,90,73,.14)}
@@ -2268,7 +2267,7 @@ function switchLang(lang) {
     var s2 = VISIBLE_SIGNALS_DATA[window._currentArt];
     if (s2) {
       var t2 = signalContent(s2, lang);
-      document.getElementById('art-cat').textContent = t2.cat || '';
+      document.getElementById('art-cat').textContent = signalIssueLabel(window._currentArt);
       document.getElementById('art-title').textContent = t2.title || '';
       document.getElementById('art-meta').textContent = signalMeta(s2, lang);
       document.getElementById('art-body').innerHTML = t2.body || '';
@@ -2360,7 +2359,7 @@ window.addEventListener('popstate', function(e) {
     if (s0) {
       var t0 = signalContent(s0, lang0);
       window._currentArt = state.artIdx;
-      document.getElementById('art-cat').textContent = t0.cat || '';
+      document.getElementById('art-cat').textContent = signalIssueLabel(state.artIdx);
       document.getElementById('art-title').textContent = t0.title || '';
       document.getElementById('art-meta').textContent = signalMeta(s0, lang0);
       document.getElementById('art-body').innerHTML = t0.body || '';
@@ -2473,6 +2472,10 @@ function signalMeta(signal, lang){
   return publishedDate(signalDate(signal), lang) + ' · ' + (signal.readTime || 3) + ' ' + readLabel;
 }
 
+function signalIssueLabel(index){
+  return 'Newsletter #' + (VISIBLE_SIGNALS_DATA.length - index);
+}
+
 function signalDate(signal) {
   if (signal.date) return signal.date;
   return /^\d{4}-\d{2}-\d{2}$/.test(signal.id || '') ? signal.id : '';
@@ -2555,11 +2558,12 @@ function renderSignalsList(){
   VISIBLE_SIGNALS_DATA.forEach(function(s, i){
     var t = signalContent(s, lang);
     var meta = signalMeta(s, lang);
+    var issueLabel = signalIssueLabel(i);
     var takeaways = signalTakeaways(s, lang).map(function(item){
       return '<li>' + escapeHtml(item) + '</li>';
     }).join('');
     html += '<a class="sig-item" onclick="showArt(' + i + ');return false;" href="#">' +
-      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + escapeHtml(t.cat||'') + '</div>' +
+      '<div class="sig-item-inner"><div><div class="sig-item-cat">' + escapeHtml(issueLabel) + '</div>' +
       '<div class="sig-item-title">' + escapeHtml(t.title||'') + '</div>' +
       (takeaways ? '<div class="sig-takeaways-wrap"><div class="sig-takeaways-label">' + keypointsLabel + '</div><ul class="sig-takeaways">' + takeaways + '</ul></div>' : '') +
       '<span class="sig-item-cta">' + ctaLabel + ' &#x2192;</span></div>' +
@@ -2575,7 +2579,7 @@ function showArt(i) {
   var s = VISIBLE_SIGNALS_DATA[i];
   if (!s) return;
   var t = signalContent(s, lang);
-  document.getElementById('art-cat').textContent = t.cat || '';
+  document.getElementById('art-cat').textContent = signalIssueLabel(i);
   document.getElementById('art-title').textContent = t.title || '';
   document.getElementById('art-meta').textContent = signalMeta(s, lang);
   document.getElementById('art-body').innerHTML = t.body || '';
