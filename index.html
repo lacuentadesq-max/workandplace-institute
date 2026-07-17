@@ -1151,7 +1151,7 @@ footer{background:#295a49;padding:64px 0 32px}
           <h1 class="sig-h"><span data-i18n="sig_h1_a">Una newsletter cada viernes.</span><br><em data-i18n="sig_h1_b">Para entender hacia d&oacute;nde va la oficina.</em></h1>
           <p class="sig-desc" data-i18n="sig_desc1">Cada viernes recibes un análisis de las señales que están transformando el futuro de la oficina para ayudarte a entender qué cambia y por qué importa.</p>
 
-          <p class="sig-byline"><span data-i18n="sig_por">Por</span> <button onclick="window._nosotrasTarget='sq';showPage('page-nosotras')"" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Susana Quint&aacute;s</strong></button> y <button onclick="window._nosotrasTarget='jg';showPage('page-nosotras')" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Joaquina Garrido-Arroquia</strong></button></p>
+          <p class="sig-byline"><span data-i18n="sig_por">Por</span> <button onclick="window._nosotrasTarget='sq';showPage('page-nosotras')" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Susana Quint&aacute;s</strong></button> y <button onclick="window._nosotrasTarget='jg';showPage('page-nosotras')" style="background:none;border:none;border-bottom:1px solid rgba(41,90,73,.2);cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;padding:0;line-height:inherit"><strong>Joaquina Garrido-Arroquia</strong></button></p>
         </div>
         <div class="sig-sub-box">
           <span class="sig-sub-label" data-i18n="sig_sub_label">Suscr&iacute;bete para recibirlas cada semana</span>
@@ -2467,12 +2467,7 @@ function scrollToSection(id) {
 var SIGNALS_DATA = [];
 var VISIBLE_SIGNALS_DATA = [];
 
-// Fallback mínimo por si signals.json no carga (red, archivo local, error 404)
-var SIGNALS_FALLBACK = [
-  {id:"fallback-1", date:"2026-07-17", readTime:3,
-   es:{cat:"Regulación", title:"La nueva directiva europea de eficiencia energética en edificios", body:"<p>La Directiva (UE) 2024/1275 — EPBD revisada — establece los estándares más exigentes hasta la fecha para los inmuebles en Europa.</p>"},
-   en:{cat:"Regulation", title:"The new European energy efficiency directive for buildings", body:"<p>Directive (EU) 2024/1275 — the revised EPBD — sets the most demanding standards to date for buildings across Europe.</p>"}}
-];
+var SIGNALS_LOAD_ERROR = false;
 
 function relativeDate(dateStr, lang){
   if (!dateStr) return lang === 'en' ? 'Previous issue' : 'Newsletter anterior';
@@ -2536,7 +2531,8 @@ function signalDate(signal) {
 }
 
 function loadSignals(){
-  fetch('signals.json', {cache:'no-cache'})
+  SIGNALS_LOAD_ERROR = false;
+  fetch('/signals.json?v=' + Date.now(), {cache:'no-store'})
     .then(function(r){ if(!r.ok) throw new Error('signals.json not found'); return r.json(); })
     .then(function(data){
       SIGNALS_DATA = (data && Array.isArray(data.signals)) ? data.signals.slice() : [];
@@ -2545,8 +2541,9 @@ function loadSignals(){
       renderSignalsList();
     })
     .catch(function(){
-      SIGNALS_DATA = SIGNALS_FALLBACK.slice();
-      VISIBLE_SIGNALS_DATA = visibleSignals(SIGNALS_DATA);
+      SIGNALS_LOAD_ERROR = true;
+      SIGNALS_DATA = [];
+      VISIBLE_SIGNALS_DATA = [];
       renderSignalsList();
     });
 }
@@ -2602,7 +2599,9 @@ function renderSignalsList(){
 
   if (!VISIBLE_SIGNALS_DATA.length) {
     container.innerHTML = '<p style="padding:24px 0;color:var(--muted);font-size:.9rem">' +
-      (lang === 'en' ? 'No signals published yet.' : 'Todavía no hay señales publicadas.') + '</p>';
+      (SIGNALS_LOAD_ERROR
+        ? (lang === 'en' ? 'The newsletters could not be loaded. Please refresh the page.' : 'No se han podido cargar las newsletters. Recarga la página.')
+        : (lang === 'en' ? 'No signals published yet.' : 'Todavía no hay señales publicadas.')) + '</p>';
     return;
   }
 
