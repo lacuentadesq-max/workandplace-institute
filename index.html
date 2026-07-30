@@ -2564,6 +2564,7 @@ function signalContent(signal, lang) {
       cat: signal.cat_en || signal.cat || '',
       title: signal.title_en || signal.title || '',
       body: signal.body_en || signal.body || '',
+      keypoints: signal.keypoints_en || signal.keypoints || [],
       takeaways: signal.takeaways_en || signal.takeaways || []
     };
   }
@@ -2571,6 +2572,7 @@ function signalContent(signal, lang) {
     cat: signal.cat || '',
     title: signal.title || '',
     body: signal.body || '',
+    keypoints: signal.keypoints || [],
     takeaways: signal.takeaways || []
   };
 }
@@ -2587,9 +2589,27 @@ function stripHtml(value) {
 
 function signalTakeaways(signal, lang) {
   var t = signalContent(signal, lang);
-  var list = t.takeaways || signal.takeaways || [];
+  var list = t.keypoints || signal.keypoints || t.takeaways || signal.takeaways || [];
   if (Array.isArray(list) && list.length) return list.slice(0, 3);
   return stripHtml(t.body).split(/(?<=[.!?])\s+/).filter(Boolean).slice(0, 3);
+}
+
+function signalClosingHtml(content, lang) {
+  var html = '';
+  if (content.epilogue) {
+    html += '<div class="sig-epilogue" style="margin:38px 0 28px;padding:20px 22px;border-left:2px solid var(--petrol);background:rgba(41,90,73,.045);font-family:var(--f-s);font-size:1.04rem;line-height:1.7;color:var(--ink)">' + content.epilogue + '</div>';
+  }
+  var refs = Array.isArray(content.references) ? content.references : [];
+  if (refs.length) {
+    var label = lang === 'en' ? 'References' : 'Referencias';
+    html += '<section class="sig-references" style="margin:34px 0 0;padding-top:20px;border-top:1px solid rgba(41,90,73,.16)"><div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:12px">' + label + '</div><ul style="margin:0;padding-left:18px;display:grid;gap:9px">';
+    refs.forEach(function(ref) {
+      if (!ref || !ref.title || !ref.url) return;
+      html += '<li style="font-size:.82rem;line-height:1.55;color:var(--muted)"><a href="' + escapeHtml(ref.url) + '" target="_blank" rel="noopener" style="color:var(--petrol)">' + escapeHtml(ref.title) + '</a>' + (ref.source ? ' · ' + escapeHtml(ref.source) : '') + '</li>';
+    });
+    html += '</ul></section>';
+  }
+  return html;
 }
 
 function renderSignalsList(){
@@ -2606,7 +2626,7 @@ function renderSignalsList(){
   }
 
   var ctaLabel = lang === 'en' ? 'Keep reading' : 'Seguir leyendo';
-  var keypointsLabel = lang === 'en' ? 'Key takeaways' : '3 claves';
+  var keypointsLabel = lang === 'en' ? 'Key points' : 'Puntos clave';
   var html = '';
   VISIBLE_SIGNALS_DATA.forEach(function(s, i){
     var t = signalContent(s, lang);
@@ -2635,7 +2655,7 @@ function showArt(i) {
   document.getElementById('art-cat').textContent = signalIssueLabel(i);
   document.getElementById('art-title').textContent = t.title || '';
   document.getElementById('art-meta').textContent = signalMeta(s, lang);
-  document.getElementById('art-body').innerHTML = t.body || '';
+  document.getElementById('art-body').innerHTML = (t.body || '') + signalClosingHtml(t, lang);
   document.getElementById('sig-list').style.display = 'none';
   var v = document.getElementById('sig-art');
   v.style.display = 'block';
